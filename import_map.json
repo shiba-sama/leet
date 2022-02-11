@@ -1,0 +1,5 @@
+{
+   "imports": {
+      "edc/": "https://raw.githubusercontent.com/meows/edc/master/src/"
+   }
+}
