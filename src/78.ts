@@ -23,13 +23,13 @@ function * subsets(arr:any[]) {
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // Extra
 
-function λpowerset(arr:number[]): number[][] {
-   function loop(i:number, set:number[]) {
+function λpowerset(arr:any[]): any[][] {
+   function loop(i:number, set:any[]) {
       if (i === arr.length) return acc.push(set)
       loop(i + 1, set)
       loop(i + 1, set.concat(arr[i]))
    }
-   const acc: number[][] = []
+   const acc: any[][] = []
    loop(0, [])
    return acc
 }
