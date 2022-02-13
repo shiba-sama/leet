@@ -18,13 +18,48 @@ class Node {
    }
 }
 
-// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-// Graph Cloning
+// class Node {
+//    value: number;
+//    neighbors: Node[] = [];
+//    constructor(value: number) {
+//        this.value = value;
+//    }
+//    print(): string {
+//        return this.print2(new Set(), 0);
+//    }
+//    private print2(cache: Set<number>, pad: number): string {
+//        const padding = Array(pad).fill(".").join("");
+//        if (cache.has(this.value)) {
+//            return `${padding}Nod(${this.value}) [SEEN]\n`
+//        } else {
+//            cache.add(this.value);
+//            return `${padding}Nod(${this.value}):\n${this.neighbors.map(n => n.print2(cache, pad + 4)).join("")}`
+//        }
+//    }
+// }
 
-export function cloneGraph(node: Node): Node | null {
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// Core
+
+function cloneGraph(node: Node): Node {
+   return cloneGraph2(node, new Map());
+}
+
+function cloneGraph2(node: Node, seen: Map<number, Node>): Node {
+   if (seen.has(node.val)) return seen.get(node.val)!; 
+   const newnod = new Node(node.val, []);
+   seen.set(node.val, newnod);
+   newnod.neighbors = node.neighbors.map(n => cloneGraph2(n, seen));
+   return newnod;
+}
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// Extra
+
+export function clone(node: Node): Node | null {
    if (!node) return null;
    const map = new Map()
-
    const stack = [node]
    map.set(node.val, new Node(node.val, []))
 
@@ -46,14 +81,5 @@ export function cloneGraph(node: Node): Node | null {
    return map.get(node.val)
 }
 
-export let n = new Node(1, [new Node(2, [new Node(3, [])])])
-export let n1 = cloneGraph(n)
-
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // Export
-
-export default {
-   cloneGraph,
-   n,
-   n1,
-}
