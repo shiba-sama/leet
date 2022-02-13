@@ -13,7 +13,7 @@ interface Node {
 class Node {
    val:number = 0;
    neighbors:Node[] = [];
-   constructor(val:number, neighbors:Node[]) {
+   constructor(val:number, neighbors?:Node[]) {
       Object.assign(this, {val, neighbors})
    }
 }
@@ -69,7 +69,7 @@ function clone(node: Node): Node | null {
          const copy = map.get(oldPeer.val)
          if (map.has(oldPeer.val)) copy.neighbors.push(map.get(oldPeer.val)) 
          else {
-            const newPeer = new Node(oldPeer.val, [])
+            const newPeer = new Node(oldPeer.val)
             stack.push(oldPeer)
             copy.neighbors.push(newPeer)
             map.set(oldPeer.val, newPeer)
