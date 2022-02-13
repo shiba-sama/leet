@@ -38,7 +38,6 @@ class Node {
 //    }
 // }
 
-
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // Core
 
@@ -57,7 +56,7 @@ function cloneGraph2(node: Node, seen: Map<number, Node>): Node {
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // Extra
 
-export function clone(node: Node): Node | null {
+function clone(node: Node): Node | null {
    if (!node) return null;
    const map = new Map()
    const stack = [node]
@@ -83,3 +82,7 @@ export function clone(node: Node): Node | null {
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // Export
+
+export default {
+   cloneGraph
+}
