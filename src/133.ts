@@ -42,15 +42,16 @@ class Node {
 // Core
 
 function cloneGraph(node: Node): Node {
-   return cloneGraph2(node, new Map());
-}
+   const seen = new Map()
+   function clone(node: Node): Node {
+      if (seen.has(node.val)) return seen.get(node.val)
+      const copy = new Node(node.val)
+      seen.set(node.val, copy)
+      copy.neighbors = node.neighbors.map(clone)
+      return copy
+   }
 
-function cloneGraph2(node: Node, seen: Map<number, Node>): Node {
-   if (seen.has(node.val)) return seen.get(node.val)!; 
-   const newnod = new Node(node.val, []);
-   seen.set(node.val, newnod);
-   newnod.neighbors = node.neighbors.map(n => cloneGraph2(n, seen));
-   return newnod;
+   return clone(node);
 }
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
