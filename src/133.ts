@@ -37,15 +37,15 @@ class Node {
 
 function cloneGraph(node:Node | null): Node | null {
    if (!node) return null;
-   function crawl(node: Node): Node {
+   function clone(node: Node): Node {
       if (seen.has(node.val)) return seen.get(node.val)
       const copy = new Node(node.val)
       seen.set(node.val, copy)
-      copy.neighbors = node.neighbors.map(crawl)
+      copy.neighbors = node.neighbors.map(clone)
       return copy
    }
    const seen = new Map()
-   return crawl(node);
+   return clone(node)
 }
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -79,5 +79,5 @@ function clone(node: Node): Node | null {
 // Export
 
 export default {
-   cloneGraph
+   cloneGraph,
 }
