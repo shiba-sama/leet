@@ -16,43 +16,37 @@ class Node {
    constructor(val:number, neighbors?:Node[]) {
       Object.assign(this, {val, neighbors})
    }
-}
 
-// class Node {
-//    value: number;
-//    neighbors: Node[] = [];
-//    constructor(value: number) {
-//        this.value = value;
-//    }
-//    print(): string {
-//        return this.print2(new Set(), 0);
-//    }
-//    private print2(cache: Set<number>, pad: number): string {
-//        const padding = Array(pad).fill(".").join("");
-//        if (cache.has(this.value)) {
-//            return `${padding}Nod(${this.value}) [SEEN]\n`
-//        } else {
-//            cache.add(this.value);
-//            return `${padding}Nod(${this.value}):\n${this.neighbors.map(n => n.print2(cache, pad + 4)).join("")}`
-//        }
-//    }
-// }
+   // print(): string {
+   //     return this.print2(new Set(), 0);
+   // }
+
+   // #print2(cache: Set<number>, pad: number): string {
+   //     const padding = Array(pad).fill(".").join("");
+   //     if (cache.has(this.value)) {
+   //         return `${padding}Nod(${this.value}) [SEEN]\n`
+   //     } else {
+   //         cache.add(this.value);
+   //         return `${padding}Nod(${this.value}):\n${this.neighbors.map(n => n.print2(cache, pad + 4)).join("")}`
+   //     }
+   // }
+}
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // Core
 
-function cloneGraph(node: Node): Node | null {
+function cloneGraph(node:Node): Node | null {
    if (!node) return null;
    const seen = new Map()
-   function clone(node: Node): Node {
+   function crawl(node: Node): Node {
       if (seen.has(node.val)) return seen.get(node.val)
       const copy = new Node(node.val)
       seen.set(node.val, copy)
-      copy.neighbors = node.neighbors.map(clone)
+      copy.neighbors = node.neighbors.map(crawl)
       return copy
    }
 
-   return clone(node);
+   return crawl(node);
 }
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
