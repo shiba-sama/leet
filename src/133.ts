@@ -35,9 +35,8 @@ class Node {
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // Core
 
-function cloneGraph(node:Node): Node | null {
+function cloneGraph(node:Node | null): Node | null {
    if (!node) return null;
-   const seen = new Map()
    function crawl(node: Node): Node {
       if (seen.has(node.val)) return seen.get(node.val)
       const copy = new Node(node.val)
@@ -45,7 +44,7 @@ function cloneGraph(node:Node): Node | null {
       copy.neighbors = node.neighbors.map(crawl)
       return copy
    }
-
+   const seen = new Map()
    return crawl(node);
 }
 
