@@ -41,7 +41,8 @@ class Node {
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // Core
 
-function cloneGraph(node: Node): Node {
+function cloneGraph(node: Node): Node | null {
+   if (!node) return null;
    const seen = new Map()
    function clone(node: Node): Node {
       if (seen.has(node.val)) return seen.get(node.val)
@@ -61,7 +62,7 @@ function clone(node: Node): Node | null {
    if (!node) return null;
    const map = new Map()
    const stack = [node]
-   map.set(node.val, new Node(node.val, []))
+   map.set(node.val, new Node(node.val))
 
    while (stack.length) {
       const old = stack.pop()
