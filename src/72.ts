@@ -15,11 +15,11 @@ function minDistance(w1:string, w2:string) {
    if (w2.length === 0) return w1.length; 
    if (w1[0] === w2[0]) return minDistance(w1.slice(1), w2.slice(1));
 
-   return Math.min(
+   return 1 + Math.min(
       minDistance(w1.slice(1), w2),
       minDistance(w1, w2.slice(1)),
       minDistance(w1.slice(1), w2.slice(1))
-   ) + 1
+   )
 }
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
