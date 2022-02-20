@@ -15,7 +15,7 @@
 
       "noEmit": false,          // REQUIRED: `"noEmit": false
       "module": "esnext",       // REQUIRED: "module": "esnext"
-      "outDir": "./public/src",
+      "outDir": "./build/",
       "rootDir": "./src",
       "target": "esnext",
       "lib": ["DOM", "ESNext"]

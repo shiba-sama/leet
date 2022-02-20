@@ -1,3 +1,12 @@
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   Commentary
+
+   - `1 << j` corresponds to a unit vector for the bitwise space.
+   - `i` represents all possible values from `0` to `2 ** arr.length`.
+   - while walking through all choices of `i` we use the unit vector `1 << j` to 
+     check whether a bit in `i` is on or off during a specific combination.
+ */
+
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // Powerset
 
@@ -49,3 +58,7 @@ export {
    powerset,
    subsets,
 }
+
+console.log(
+   powerset([1, 2, 3, 'meow'])
+)

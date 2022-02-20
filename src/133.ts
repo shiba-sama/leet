@@ -11,32 +11,18 @@ interface Node {
 // Atoms
 
 class Node {
-   val:number = 0;
-   neighbors:Node[] = [];
+   val:number = 0
+   neighbors:Node[] = []
    constructor(val:number, neighbors?:Node[]) {
       Object.assign(this, {val, neighbors})
    }
-
-   // print(): string {
-   //     return this.print2(new Set(), 0);
-   // }
-
-   // #print2(cache: Set<number>, pad: number): string {
-   //     const padding = Array(pad).fill(".").join("");
-   //     if (cache.has(this.value)) {
-   //         return `${padding}Nod(${this.value}) [SEEN]\n`
-   //     } else {
-   //         cache.add(this.value);
-   //         return `${padding}Nod(${this.value}):\n${this.neighbors.map(n => n.print2(cache, pad + 4)).join("")}`
-   //     }
-   // }
 }
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // Core
 
 function cloneGraph(node:Node | null): Node | null {
-   if (!node) return null;
+   if (!node) return null
    function clone(node: Node): Node {
       if (seen.has(node.val)) return seen.get(node.val)
       const copy = new Node(node.val)
