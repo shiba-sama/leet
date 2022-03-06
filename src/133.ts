@@ -44,16 +44,16 @@ function clone(node: Node): Node | null {
    map.set(node.val, new Node(node.val))
 
    while (stack.length) {
-      const old = stack.pop()
-      if (!old?.neighbors || old.neighbors.length <= 0) continue;
-      for (const oldPeer of old.neighbors) {
-         const copy = map.get(oldPeer.val)
-         if (map.has(oldPeer.val)) copy.neighbors.push(map.get(oldPeer.val)) 
+      const n0 = stack.pop()
+      if (!n0?.neighbors || n0.neighbors.length <= 0) continue;
+      for (const peer0 of n0.neighbors) {
+         const copy = map.get(peer0.val)
+         if (map.has(peer0.val)) copy.neighbors.push(map.get(peer0.val))
          else {
-            const newPeer = new Node(oldPeer.val)
-            stack.push(oldPeer)
-            copy.neighbors.push(newPeer)
-            map.set(oldPeer.val, newPeer)
+            const peer1 = new Node(peer0.val)
+            stack.push(peer0)
+            copy.neighbors.push(peer1)
+            map.set(peer0.val, peer1)
          }
       }
    }
