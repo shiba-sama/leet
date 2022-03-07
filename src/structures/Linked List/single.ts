@@ -31,8 +31,8 @@ function newList(...args): [木, 木]
 function newList(...args) {
    const root = Node(args[0])
    let last = root
-   for (const v of args.slice(1))
-      last.next = Node(v, last),
+   for (const arg of args.slice(1)) 
+      last.next = Node(arg, last), 
       last = last.next
    return [root, last]
 }
@@ -44,7 +44,7 @@ function Node(value?, next?:木): 木
 function Node(value=none, next) { return dict({ value, next, }) }
 
 function List(): 森
-function List() { return dict({ root: undefined, size: 0, }) }
+function List(): 森 { return dict({ root: undefined, size: 0, }) }
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // Methods
