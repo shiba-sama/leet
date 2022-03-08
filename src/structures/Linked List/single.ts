@@ -24,7 +24,7 @@ type 木 = {
 
 const none = Symbol("none")
 
-function dict(obj?: Object)
+function dict(obj?: Object): Object
 function dict(obj) { return Object.assign(Object.create(null), obj) }
 
 function newList(...args): [木, 木]
@@ -44,7 +44,7 @@ function Node(value?, next?:木): 木
 function Node(value=none, next) { return dict({ value, next, }) }
 
 function List(): 森
-function List(): 森 { return dict({ root: undefined, size: 0, }) }
+function List() { return dict({ root: undefined, size: 0, }) }
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // Methods
@@ -59,5 +59,11 @@ function shift(L:森) {
 
 function unshift(L:森, value) {
    L.root = Node(value, L.root)
-   return L.size++
+   return ++L.size
+}
+
+function get(L:森, i:number) {
+   let curr = L.root
+   while (i--) curr = curr?.next
+   return curr?.value
 }
