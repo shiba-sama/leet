@@ -1,13 +1,13 @@
-const qs = arr => arr.length < 2
+const quicksort = arr => arr.length < 2
    ? arr
-   : qs(arr.slice(1).filter(x => x <= arr[0]))
+   : quicksort(arr.slice(1).filter(x => x <= arr[0]))
       .concat(arr[0])
-      .concat(qs(arr.slice(1).filter(x => arr[0] < x)))
+      .concat(quicksort(arr.slice(1).filter(x => arr[0] < x)))
 
-function sort(arr: number[]): number[] {
+function qs(arr: number[]): number[] {
    if (arr.length < 2) return arr
    const [pivot, ...rest] = arr
-   const small = rest.filter(x => x <= pivot)
-   const big = rest.filter(x => pivot < x)
-   return sort(small).concat(pivot).concat(sort(big))
+   const 小 = rest.filter(x => x <= pivot)
+   const 大 = rest.filter(x => pivot < x)
+   return qs(小).concat(pivot).concat(qs(大))
 }

@@ -49,7 +49,7 @@ function List() { return dict({ root: undefined, size: 0, }) }
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // Methods
 
-function shift(L:森) {
+function pop(L:森) {
    if (L.size === 0) return undefined
    const root = L.root
    L.root = root?.next // undefined if last
@@ -57,13 +57,18 @@ function shift(L:森) {
    return root?.value
 }
 
-function unshift(L:森, value) {
+function push(L:森, value) {
    L.root = Node(value, L.root)
    return ++L.size
 }
 
 function get(L:森, i:number) {
    let curr = L.root
-   while (i--) curr = curr?.next
+   while (i-- >= 0) curr = curr?.next
    return curr?.value
 }
+
+let l = List()
+push(l, 10)
+push(l, 15)
+push(l, 20)
