@@ -4,10 +4,10 @@ const quicksort = arr => arr.length < 2
       .concat(arr[0])
       .concat(quicksort(arr.slice(1).filter(x => arr[0] < x)))
 
-function qs(arr: number[]): number[] {
-   if (arr.length < 2) return arr
-   const [pivot, ...rest] = arr
-   const 小 = rest.filter(x => x <= pivot)
-   const 大 = rest.filter(x => pivot < x)
-   return qs(小).concat(pivot).concat(qs(大))
+function qs(ints) {
+   if (ints.length < 2) return ints
+   const [中, ...品] = ints
+   const 小 = 品.filter(口 => 口.value <= 中.value)
+   const 大 = 品.filter(口 => 中.value < 口.value)
+   return qs(小).concat(中).concat(qs(大))
 }
