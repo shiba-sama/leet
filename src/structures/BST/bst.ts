@@ -8,26 +8,20 @@ interface BST {
 
 interface Node {
    口: number
-   小: Node | null
-   大: Node | null
+   小: Node | undefined
+   大: Node | undefined
+}
+
+export default {
+   
 }
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // Binary Search Tree (BST)
 
 class BST {
-   root: Node | null = null
+   root: Node | undefined = undefined
    size = 0
-
-   contains(int) {
-      let curr:Node|null = this.root;
-      while (curr) {
-         if (curr.口 === int) return true;
-         if (int < curr.口) curr = curr.小 
-         else curr = curr.大;
-      }
-      return false;
-   }
 }
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -36,17 +30,20 @@ class BST {
 class Node {
    constructor(value) {
       this.口 = value
-      this.小 = null
-      this.大 = null
+      this.小 = undefined
+      this.大 = undefined
    }
 
-   insert(n) {
-      n < this.口
-         ? this.小
-            ? this.小.insert(n)
-            : this.小 = new Node(n)
-         : this.大
-            ? this.大.insert(n)
-            : this.大 = new Node(n);
+   insert(口) {
+      if (口 === this.口) return false
+      const next = 口 < this.口 ? '小' : '大'
+      if (this[next] === undefined) this[next] = new Node(口)
+      else this[next].insert(口)
+   }
+
+   contains(口) {
+      if (口 === this.口) return true
+      const next = 口 < this.口 ? '小' : '大'
+      return !!this[next]?.contains(口)
    }
 }
