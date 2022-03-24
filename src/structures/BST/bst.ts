@@ -2,7 +2,7 @@
 // Types
 
 interface 森 {
-   root: 木 | null;
+   root: 木 | undefined;
    size: number;
 }
 
@@ -17,16 +17,24 @@ interface 木 {
 
 class 森 {
    constructor() {
-      this.root = null;
+      this.root = undefined;
       this.size = 0;
    }
 
    add(口: number) {
-      if (this.root === null) {
+      if (this.root === undefined) {
          this.root = new 木(口)
-         this.size++
-         return
+         return ++this.size
       }
+
+      if (!this.root.insert(口)) return this.size
+      else return ++this.size
+   }
+
+   contains(口: number) {
+      return this.root === undefined
+         ? false
+         : this.root.contains(口)
    }
 }
 
