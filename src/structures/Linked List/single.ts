@@ -9,6 +9,8 @@
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // Type
 
+export default {}
+
 type 森 = {
    root: 木 | undefined // undefined if 0
    size: number
@@ -31,8 +33,8 @@ function newList(...args): [木, 木]
 function newList(...args) {
    const root = Node(args[0])
    let last = root
-   for (const arg of args.slice(1)) 
-      last.next = Node(arg, last), 
+   for (const arg of args.slice(1))
+      last.next = Node(arg, last),
       last = last.next
    return [root, last]
 }
@@ -49,16 +51,24 @@ function List() { return dict({ root: undefined, size: 0, }) }
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // Methods
 
-function pop(L:森) {
+function unshift(L:森, value) {
+   L.root = Node(value, L.root)
+   return ++L.size
+}
+
+function shift(L:森) {
    if (L.size === 0) return undefined
-   const root = L.root
-   L.root = root?.next // undefined if last
+   const value = L.root!.value
+   L.root = L.root?.next // undefined if last
    L.size--
-   return root?.value
+   return value?.value
 }
 
 function push(L:森, value) {
-   L.root = Node(value, L.root)
+   if (L.size === 0) return unshift(L, value)
+   let curr = L.root
+   while (curr?.next) curr = curr.next
+   curr!.next = Node(value)
    return ++L.size
 }
 
@@ -68,7 +78,17 @@ function get(L:森, i:number) {
    return curr?.value
 }
 
+function *iterable(L:森) {
+   for (let curr = L.root; curr; curr = curr.next)
+      yield curr.value
+}
+
 let l = List()
-push(l, 10)
-push(l, 15)
-push(l, 20)
+
+push(l, 'a')
+push(l, 'b')
+push(l, 'c')
+push(l, 'd')
+push(l, 'e')
+
+let i = iterable(l)
