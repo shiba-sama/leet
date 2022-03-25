@@ -4,7 +4,6 @@
 interface List {
    root: Node | undefined // undefined if 0
    size: number
-
    newList(...args): [Node, Node]
 }
 
