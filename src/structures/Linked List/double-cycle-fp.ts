@@ -48,8 +48,7 @@ function single(value:any = none): Node {
 /**
  * Linked List
  */
-function List(): List
-function List() {
+function List(): List {
    return dict({ first: single(), size:0, })
 }
 
