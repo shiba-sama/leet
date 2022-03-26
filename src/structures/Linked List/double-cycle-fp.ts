@@ -67,7 +67,7 @@ function Node(value, prev, next) {
  * Pushes a value `value` onto the end of the list `L`.
  */
 function push(L:List, value) {
-   if (!L.size) {
+   if (L.size === 0) {
       L.first.value = value;
       return ++L.size
    }
@@ -83,15 +83,16 @@ function push(L:List, value) {
 }
 
 function pop(L:List) {
-   if (L.size === 0) return undefined
    const value = L.first.value
+   const penultimate = L.first.prev.prev
+
+   if (L.size === 0) return undefined
    if (L.size === 1) {
       L.first.value = none
       L.size = 0
       return value
    }
 
-   const penultimate = L.first.prev.prev
    penultimate.next = L.first
    L.first.prev = penultimate
    L.size--
@@ -104,14 +105,17 @@ function unshift(L:List, value) {
       return ++L.size
    }
 
-   const first = Node(value)
+   const first = Node(value, L.first.prev, L.first)
    const second = L.first
    const last = L.first.prev
 
-   L.first = first
+   
+   last.next = first
    first.next = second
    first.prev = last
    second.prev = first
+
+   L.first = first
    return ++L.size
 }
 
@@ -140,7 +144,3 @@ function shift(L:List) {
 }
 
 let l = List()
-unshift(l, 'a')
-unshift(l, 'b')
-unshift(l, 'c')
-unshift(l, 'd')
