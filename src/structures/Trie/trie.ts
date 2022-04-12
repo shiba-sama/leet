@@ -23,29 +23,8 @@ function dict<T extends Object>(obj?: T): T {
    return Object.assign(Object.create(null), obj)
 }
 
-function isLetter(letter: any): boolean {
-   return typeof letter === 'string' && !!letter.match(/^[a-z]$/i)
-}
-
-function isWord(word: string): boolean {
-   return !!word.match(/^[a-z]+$/i)
-}
-
-function followPath(T: Trie, word:string): Node | Trie {
-   let curr = T.kids[word[0]]
-   let next;
-
-   // word is not in the trie
-   if (!curr) return T
-
-   for (const letter of word.slice(1)) {
-      next = curr.kids[letter]
-      if (!next) return curr
-      curr = next
-   }
-
-   return curr
-}
+const isLetter = (letter) => Boolean(letter?.match(/^[a-z]$/i))
+const isWord = (word) => Boolean(word?.match(/^[a-z]+$/i))
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // Atoms
@@ -60,19 +39,19 @@ function node({ value="", kids=dict(), isWord=false }): Node {
 
 // creates a sub-trie to stitch onto another node
 function branch(word:string): Node {
-   if (!word.toLocaleLowerCase().match(/^[a-z]+$/i)) throw Error(`${word} isn't a word.`)
+   if (!isWord(word)) throw Error(`branch: invalid word: ${word}`)
    return word.length === 1
-      ? dict({ value: word[0], kids: dict(), isWord: true, })
-      : dict({
+      ? node({ value: word, isWord: true })
+      : node({
          value: word[0],
          kids: dict({ [word[1]]: branch(word.slice(1)) }),
-         isWord: false,
       })
 }
 
-function Trie(): Trie {
+function newTrie(word:string): Trie {
+   const b = branch(word)
    return dict({
-      kids: dict(),
+      kids: dict({ [b.value]: b }),
       words: 0,
    })
 }
@@ -80,16 +59,41 @@ function Trie(): Trie {
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // Methods
 
-function hasWord(T: Trie, word:string): boolean {
-   let curr = T.root
-   for (const letter of word) {
-      if (letter in curr.kids) curr = curr.kids[letter]
-      else return false
+function insert(T:Trie, word:string) {
+   if (!isWord(word)) throw Error(`insert: invalid word: ${word}`)
+   const [w, ...ord] = word
+   let curr = T[word[0]]
+   for (let i = 0; i < ord.length; i++) {
+      const letter = ord[i]
+      if (!curr.kids[letter]) {
+         curr.kids[letter] = branch(word.slice(i + 1))
+         return ++T.words
+      }
+      curr = curr.kids[letter]
    }
-   return Boolean(curr.isWord)
+   if (curr.isWord) return T.words
+   curr.isWord = true
+   return ++T.words
+}
+
+function hasWord(T:Trie, word:string): boolean {
+   if (!isWord(word)) return false
+
+   const [w, ...ord] = word
+   let curr = T.kids[w]
+
+   for (const o of ord) {
+      if (!curr) return false
+      curr = curr.kids[o]
+   }
+
+   return !!curr.isWord
 }
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // Test
 
-let t = branch('abcd')
+let b = branch('abcd')
+let t = newTrie()
+
+t.kids[1] = b

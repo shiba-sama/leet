@@ -114,8 +114,8 @@ function* iterate(T:森) {
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // Tests
 
-const BST = 森()
+const BST = 森();
 
-;[0, 6,6, 2,2, 5,5, 3,0, 1,2, 4,10, 7, 9].forEach(num => add(BST, num))
+[0, 6,6, 2,2, 5,5, 3,0, 1,2, 4,10, 7, 9].forEach(num => add(BST, num))
 
 console.log(...iterate(BST))

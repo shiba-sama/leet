@@ -109,7 +109,6 @@ function unshift(L:List, value) {
    const second = L.first
    const last = L.first.prev
 
-   
    last.next = first
    first.next = second
    first.prev = last
@@ -124,23 +123,23 @@ function unshift(L:List, value) {
  */
 function shift(L:List) {
    if (L.size === 0) return undefined
-   if (L.size === 1) {
-      const value = L.first.value
-      L.first.value = none
-      L.size = 0
-      return value
-   }
 
-   const value = L.first.value
+   const first = L.first.value
    const second = L.first.next
    const last = L.first.prev
 
-   last.next = second  // last -> second
-   second.prev = last  // last <- second
-   L.first = second    // first -> second
+   if (L.size === 1) {
+      L.first.value = none
+      L.size = 0
+      return first
+   }
+
+   last.next = second
+   second.prev = last
+   L.first = second
    L.size--
 
-   return value
+   return first
 }
 
 let l = List()
