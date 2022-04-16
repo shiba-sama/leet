@@ -19,7 +19,14 @@ interface Node {
 const none = Symbol("none")
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-// Atoms
+// Atom
+
+class Node {
+   constructor(value=none, next?:Node) {
+      this.value = value
+      this.next = next
+   }
+}
 
 class List {
    root: Node | undefined = undefined
@@ -49,13 +56,6 @@ class List {
       let curr = this.root
       while (curr) list.push(curr.value), curr = curr.next
       return list
-   }
-}
-
-class Node {
-   constructor(value=none, next?:Node) {
-      this.value = value
-      this.next = next
    }
 }
 
