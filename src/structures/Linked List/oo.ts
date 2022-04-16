@@ -55,6 +55,16 @@ class List {
       while (i--) curr = curr?.next
       return curr?.value
    }
+
+   reverse() {
+      const list = new List()
+      let curr = this.root
+      while (curr) {
+         list.push(curr.value)
+         curr = curr.next
+      }
+      return list
+   }
 }
 
 class Node {
@@ -65,6 +75,13 @@ class Node {
 }
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-// Atoms
+// Test
+
+let l = new List()
+l.push(1)
+l.push(2)
+l.push(3)
+
+let reverse = l.reverse()
 
 export default {}
