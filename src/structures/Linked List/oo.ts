@@ -18,24 +18,12 @@ interface Node {
 
 const none = Symbol("none")
 
-function dict(obj?: Object): Object
-function dict(obj) { return Object.assign(Object.create(null), obj) }
-
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // Atoms
 
 class List {
    root: Node | undefined = undefined
    size: number = 0
-
-   newList(...args): [Node, Node] {
-      const first = new Node(args[0])
-      let last = first
-      for (const arg of args.slice(1))
-         last.next = new Node(arg, last),
-         last = last.next
-      return [first, last]
-   }
 
    push(value: any) {
       this.root = new Node(value, this.root)
