@@ -47,10 +47,7 @@ class List {
    reverse() {
       const list = new List()
       let curr = this.root
-      while (curr) {
-         list.push(curr.value)
-         curr = curr.next
-      }
+      while (curr) list.push(curr.value), curr = curr.next
       return list
    }
 }
