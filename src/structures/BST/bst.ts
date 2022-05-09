@@ -51,9 +51,8 @@ class 木 {
    insert(口) {
       if (口 === this.口) return false
       const next = 口 < this.口 ? '小' : '大'
-      this[next] === undefined 
-         ? this[next] = new 木(口)
-         : this[next].insert(口)
+      if (this[next] === undefined) this[next] = new 木(口)
+      else this[next].insert(口)
    }
 
    contains(口) {

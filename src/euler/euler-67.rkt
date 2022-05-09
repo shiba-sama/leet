@@ -23,7 +23,7 @@
 ;; ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ;; Solve
 
-(for/fold ([now   (first rows)])
-          ([now++ (rest rows)])
-          (for/list ([i now] [j (rest now)] [k now++])
+(for/fold ([now  (first rows)])
+          ([next (rest rows)])
+          (for/list ([i now] [j (rest now)] [k next])
                     (+ (max i j) k)))

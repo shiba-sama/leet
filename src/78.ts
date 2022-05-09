@@ -43,7 +43,7 @@ function λpowerset(arr:any[]): any[][] {
    return acc
 }
 
-function * subsets1(arr:any[]) {
+function * subs(arr:any[]) {
    const max = 2 ** arr.length
    for (let i = 0; i < max; i++) {
       const keys = i.toString(2).padStart(arr.length, '0')
