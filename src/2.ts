@@ -20,19 +20,6 @@ function listToNumber(l:ListNode): bigint {
    return BigInt(digits.join(""))
 }
 
-function numberToList(n:bigint): ListNode {
-   const [first, ...rest] = String(n).split("").map(BigInt).reverse()
-   let root = ListNode(first)
-   let curr = root
-
-   for (const digit of rest) {
-      curr.next = ListNode(digit)
-      curr = curr.next
-   }
-
-   return root
-}
-
 // —————————————————————————————————————————————————————————————————————————————
 // Solve
 
