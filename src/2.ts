@@ -7,13 +7,10 @@ type ListNode = {
 }
 
 function ListNode(val=0n, next:ListNode|null=null): ListNode {
-   return {
-      val,
-      next
-   }
+   return { val, next, }
 }
 
-function listToNumber(l:ListNode): BigInt {
+function listToNumber(l:ListNode): bigint {
    let digits:BigInt[] = []
    let curr:ListNode|null = l
    while (curr) {
@@ -23,7 +20,7 @@ function listToNumber(l:ListNode): BigInt {
    return BigInt(digits.join(""))
 }
 
-function numberToList(n:BigInt): ListNode {
+function numberToList(n:bigint): ListNode {
    const [first, ...rest] = String(n).split("").map(BigInt).reverse()
    let root = ListNode(first)
    let curr = root
