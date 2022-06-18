@@ -124,12 +124,14 @@ type SyncResponse = {
 }
 
 class Client<T> {
-   remote_address:string
-   crdt:SyncSet<T>
+   #remote_address:string
+   #crdt:SyncSet<T>
+   #retry:number
 
-   constructor(remote_address:string, crdt:SyncSet<T>) {
-      this.remote_address = remote_address
-      this.crdt = crdt
+   constructor(remote_address:string, crdt:SyncSet<T>, retry=10_000) {
+      this.#remote_address = remote_address
+      this.#crdt = crdt
+      this.#retry = retry
    }
 
    async sync(clock:Clock) {
@@ -137,20 +139,21 @@ class Client<T> {
       const headers = { "Content-Type": "application/json", }
       const body = JSON.stringify(clock)
 
-      const remotePast = await fetch(this.remote_address, { method, headers, body, })
+      const remotePast = await fetch(this.#remote_address, { method, headers, body, })
          .then(r => r.json() as Promise<SyncResponse>)
          .then(({ past, clock }) => {
-            this.crdt.sync(past)
-            return this.crdt.deltaPast(clock)
+            this.#crdt.sync(past)
+            return this.#crdt.deltaPast(clock)
          })
          .catch(e => new Error("Initial fetch failure: " + e))
 
       if (remotePast instanceof Error) {
-         setTimeout(() => this.sync(clock), 10_000)
+         console.error(remotePast)
+         setTimeout(() => this.sync(clock), this.#retry)
          return
       }
 
-      fetch(this.remote_address, {
+      fetch(this.#remote_address, {
          method,
          headers,
          body: JSON.stringify(remotePast)
