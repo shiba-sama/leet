@@ -1,8 +1,9 @@
 // —————————————————————————————————————————————————————————————————————————————
 // Environment
 
-const ADD    = "ADD" as const
+const ADD    = "ADD"    as const
 const REMOVE = "REMOVE" as const
+const UNDO   = "UNDO"   as const
 
 type Action = {
    id: string
@@ -10,13 +11,11 @@ type Action = {
    value: any
 }
 
-type Past = {
-   [id: string]: Action[]
-}
+/** A map of operation history. */
+type Past = { [id: string]: Action[] }
 
-type Clock = {
-   [id: string]: number
-}
+/** A vector clock. */
+type Clock = { [id: string]: number }
 
 // —————————————————————————————————————————————————————————————————————————————
 // Utility
