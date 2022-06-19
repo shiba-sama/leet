@@ -31,6 +31,16 @@ const uid = () => performance.now().toString(36)
 /**
  * A wrapper around a JavaScript `Set` which supports distributed offline-first
  * synchronization and local undo.
+ * 
+ * @example
+ * const s1 = new SyncSet<number>()
+ * const s2 = new SyncSet<number>()
+ * s1.add(1)        // s1: {1},    s2: {}
+ * s1.add(2)        // s1: {1, 2}, s2: {}
+ * s2.sync(s1.past) // s1: {1, 2}, s2: {1, 2}
+ * s2.add(0)        // s1: {1, 2}, s2: {0, 1, 2}
+ * s2.remove(2)     // s1: {1, 2}, s2: {0, 1}
+ * s1.sync(s2.past) // s1: {0, 1}, s2: {0, 1}
  */
 class SyncSet<T> {
    set = new Set<T>()
@@ -123,41 +133,21 @@ type SyncResponse = {
    clock:Clock
 }
 
-class Client<T> {
-   #remote_address:string
-   #crdt:SyncSet<T>
-   #retry:number
+type Sender = () => Promise<SyncResponse>
 
-   constructor(remote_address:string, crdt:SyncSet<T>, retry=10_000) {
-      this.#remote_address = remote_address
-      this.#crdt = crdt
-      this.#retry = retry
+type Online = boolean
+
+class Client<T> {
+   crdt: SyncSet<T>
+   isOnline = false
+   lastSync:Clock = {}
+
+   constructor(crdt: SyncSet<T>) {
+      this.crdt = crdt
    }
 
-   async sync(clock:Clock) {
-      const method = "POST"
-      const headers = { "Content-Type": "application/json", }
-      const body = JSON.stringify(clock)
+   onReceive(past:Past, clock:Clock) {
 
-      const remotePast = await fetch(this.#remote_address, { method, headers, body, })
-         .then(r => r.json() as Promise<SyncResponse>)
-         .then(({ past, clock }) => {
-            this.#crdt.sync(past)
-            return this.#crdt.deltaPast(clock)
-         })
-         .catch(e => new Error("Initial fetch failure: " + e))
-
-      if (remotePast instanceof Error) {
-         console.error(remotePast)
-         setTimeout(() => this.sync(clock), this.#retry)
-         return
-      }
-
-      fetch(this.#remote_address, {
-         method,
-         headers,
-         body: JSON.stringify(remotePast)
-      })
    }
 }
 
