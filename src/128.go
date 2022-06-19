@@ -18,6 +18,9 @@ func max_consecutive(ints []int) int {
    return max
 }
 
+// —————————————————————————————————————————————————————————————————————————————
+// Test
+
 func main() {
    numbers := []int{0, 1, 2, 3, 4, 5, 5, -5, -5, -4, -3, -2, -1}
    println(max_consecutive(numbers))
