@@ -5,7 +5,7 @@ use std::iter::FromIterator;
 // —————————————————————————————————————————————————————————————————————————————
 // Solve
 
-pub(crate) fn max_consecutive(ints: Vec<i32>) -> i32 {
+pub fn max_consecutive(ints: Vec<i32>) -> i32 {
    let mut set:HashSet<i32> = HashSet::from_iter(ints.clone());
    let mut best = 0;
 

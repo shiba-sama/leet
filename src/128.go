@@ -10,14 +10,14 @@ import (
 // Solve
 
 func max_consecutive(ints []int) int {
-	max := 0
-	set := make(map[int]struct{})
-	for _, v := range ints {
-		set[v] = struct{}{}
-	}
-	for v := range set {
-		pos := v
-		neg := v
+   max := 0
+   set := make(map[int]struct{})
+   for _, v := range ints {
+      set[v] = struct{}{}
+   }
+   for v := range set {
+      pos := v
+      neg := v
       for _, ok := set[pos + 1]; ok; _, ok = set[pos + 1] {
          delete(set, pos + 1)
          pos++
@@ -26,10 +26,10 @@ func max_consecutive(ints []int) int {
          delete(set, neg - 1)
          neg--
       }
-		diff := pos - neg + 1
-		if max < diff { max = diff }
-	}
-	return max
+      diff := pos - neg + 1
+      if max < diff { max = diff }
+   }
+   return max
 }
 
 // —————————————————————————————————————————————————————————————————————————————
@@ -49,5 +49,5 @@ func main() {
 
    file.Close()
 
-	println(max_consecutive(ints))
+   println(max_consecutive(ints))
 }

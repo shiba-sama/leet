@@ -4,6 +4,7 @@
 const ADD    = "ADD"    as const
 const REMOVE = "REMOVE" as const
 const UNDO   = "UNDO"   as const
+const REDO   = "REDO"   as const
 
 type Action = {
    id: string
@@ -73,6 +74,10 @@ class SyncSet<T> {
             this.past[action.id].push(action)
             break
       }
+   }
+
+   #dispatchSession(action) {
+      
    }
 
    deltaClock(remoteClock:Clock) {
