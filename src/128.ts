@@ -1,16 +1,29 @@
 // —————————————————————————————————————————————————————————————————————————————
 // Solve
 
-function maxConsecutive(ints:number[]) {
-   let max = 0
-   let set = new Set(ints)
-   for (let int of set) {
-      let 大 = int
-      let 小 = int
-      while (set.delete(大 + 1)) 大++
-      while (set.delete(小 - 1)) 小--
-      const diff = 大 - 小 + 1
-      if (max < diff) max = diff
+function longestConsecutive(nums:number[]) {
+   let best = 0
+   let ints = new Set(nums)
+   for (let int of ints) {
+      let pos = int
+      let neg = int
+      while (ints.delete(pos + 1)) pos++
+      while (ints.delete(neg - 1)) neg--
+      const diff = pos - neg + 1
+      if (best < diff) best = diff
    }
-   return max
+   return best
+}
+
+function maxConsecutive(nums:number[]) {
+   let best = 0
+   let ints = new Set(nums)
+   for (let int of ints) {
+      if (ints.has(int - 1)) continue
+      let curr = int
+      let streak = 1
+      while (ints.delete(curr + 1)) curr++, streak++
+      if (best < streak) best = streak
+   }
+   return best
 }
