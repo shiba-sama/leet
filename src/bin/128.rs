@@ -2,6 +2,9 @@ use std::fs;
 use std::collections::HashSet;
 use std::iter::FromIterator;
 
+// —————————————————————————————————————————————————————————————————————————————
+// Solve
+
 fn max_consecutive(ints: Vec<i32>) -> i32 {
    let mut set:HashSet<i32> = HashSet::from_iter(ints.clone());
    let mut best = 0;
@@ -32,6 +35,9 @@ fn max_consecutive(ints: Vec<i32>) -> i32 {
 
 //    return best;
 // }
+
+// —————————————————————————————————————————————————————————————————————————————
+// Test
 
 fn main() {
    let ints = fs::read_to_string("./src/data/128.txt")
