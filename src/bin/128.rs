@@ -7,11 +7,11 @@ fn max_consecutive(ints: Vec<i32>) -> i32 {
    let mut best = 0;
 
    for i in ints {
-      let mut pos = i;
-      let mut neg = i;
-      while set.remove(&(pos + 1)) { pos += 1 }
-      while set.remove(&(neg - 1)) { neg -= 1 }
-      best = best.max(pos - neg + 1);
+      let mut 大 = i;
+      let mut 小 = i;
+      while set.remove(&(大 + 1)) { 大 += 1 }
+      while set.remove(&(小 - 1)) { 小 -= 1 }
+      best = best.max(大 - 小 + 1);
    }
 
    return best;
