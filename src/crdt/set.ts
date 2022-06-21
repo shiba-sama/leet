@@ -12,6 +12,10 @@ type Action = {
    value: any
 }
 
+type Session = {
+   type: "UNDO" | "REDO"
+}
+
 /** A map of operation history. */
 type Past = { [id: string]: Action[] }
 
@@ -76,8 +80,12 @@ class SyncSet<T> {
       }
    }
 
-   #dispatchSession(action) {
-      
+   #dispatchSession(action:Session) {
+      switch(action.type) {
+         case UNDO:
+            
+         case REDO:
+      }
    }
 
    deltaClock(remoteClock:Clock) {
