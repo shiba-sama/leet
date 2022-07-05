@@ -1,6 +1,15 @@
 // —————————————————————————————————————————————————————————————————————————————
 // Solution
 
+// fn can_jump(nums: Vec<i32>) -> bool {
+//    let mut d = 0;
+//    for i in 0..nums.len() {
+//       if i > d { return false }
+//       d = d.max(i + nums[i] as usize);
+//    }
+//    return true;
+// }
+
 fn can_jump(nums: Vec<i32>) -> bool {
    let mut i = 0;
    let mut d = 0;
