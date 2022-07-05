@@ -3,7 +3,7 @@
 
 function canJump(v:number[]) {
    let i = 0
-   for (let d=0; i<v.length && i<=d; i++) 
+   for (let d=0; i<v.length && i<=d; i++)
       d = Math.max(d, i + v[i])
    return i === v.length
 }
