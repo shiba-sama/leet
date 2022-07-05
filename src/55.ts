@@ -1,12 +1,18 @@
 // —————————————————————————————————————————————————————————————————————————————
 // Solution
 
-/**
- * i: index of vector <v>
- * j: jump distance
- */
 function canJump(v:number[]) {
    let i = 0
-   for (let j=0; i<v.length && i<=j; i++) j = Math.max(j, i + v[i])
+   for (let d=0; i<v.length && i<=d; i++) 
+      d = Math.max(d, i + v[i])
    return i === v.length
+}
+
+function canJump1(v:number[]) {
+   let d = 0
+   for (let i=0; i<v.length; i++) {
+      if (i > d) return false
+      d = Math.max(d, i + v[i])
+   }
+   return true
 }
