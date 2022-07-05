@@ -37,8 +37,6 @@ impl<'a, T> Iterator for PowerSet<'a, T> {
 fn main() {
    let items = vec![0, 1, 2, 3, 4];
    let powerset = PowerSet::new(&items);
-   // for subset in powerset { println!("{:?}", subset) }
-   // collect the iterator into a vector
    let subsets:Vec<Vec<&i32>> = powerset.collect();
    println!("{:?}", subsets);
 }
