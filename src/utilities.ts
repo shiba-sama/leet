@@ -49,12 +49,12 @@ export function mergeSortedVectors(v1:number[], v2:number[]): number[] {
 // —————————————————————————————————————————————————————————————————————————————
 // Tree
 
-function * depthFirstSearch<T>(node:T, keys=["left", "right"], value="val"): IterableIterator<T> {
+function * depthFirstSearch<T>(node:T, keys=["left", "right"]): IterableIterator<T> {
    const stack = [node]
    let curr = node
    while (stack.length) {
       curr = stack.pop()!
-      yield curr[value]
+      yield curr
       for (const key of keys) {
          const node = curr?.[key]
          if (node) stack.push(node)
@@ -62,12 +62,12 @@ function * depthFirstSearch<T>(node:T, keys=["left", "right"], value="val"): Ite
    }
 }
 
-function * breadthFirstSearch<T>(node:T, keys=["left", "right"], value="val"): IterableIterator<T> {
+function * breadthFirstSearch<T>(node:T, keys=["left", "right"]): IterableIterator<T> {
    const queue = [node]
    let curr = node
    while (queue.length) {
       curr = queue.shift()!
-      yield curr[value]
+      yield curr
       for (const key of keys) {
          const node = curr?.[key]
          if (node) queue.push(node)
