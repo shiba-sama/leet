@@ -45,3 +45,48 @@ export function mergeSortedVectors(v1:number[], v2:number[]): number[] {
 
    return results
 }
+
+// —————————————————————————————————————————————————————————————————————————————
+// Tree
+
+function * depthFirstSearch<T>(node:T, keys=["left", "right"], value="val"): IterableIterator<T> {
+   const stack = [node]
+   let curr = node
+   while (stack.length) {
+      curr = stack.pop()!
+      yield curr[value]
+      for (const key of keys) if (key in curr) stack.push(curr[key])
+   }
+}
+
+function * breadthFirstSearch<T>(node:T, keys=["left", "right"], value="val"): IterableIterator<T> {
+   const queue = [node]
+   let curr = node
+   while (queue.length) {
+      curr = queue.shift()!
+      yield curr[value]
+      for (const key of keys) if (key in curr) queue.push(curr[key])
+   }
+}
+
+let tree = {
+   val: "root",
+   left: {
+      val: "left",
+      left: {
+         val: "left.left",
+      },
+      right: {
+         val: "left.right",
+      }
+   },
+   right: {
+      val: "right",
+      right: {
+         val: "right.right",
+      }
+   }
+}
+
+let walk = breadthFirstSearch(tree)
+for (const w of walk) console.log(w)
