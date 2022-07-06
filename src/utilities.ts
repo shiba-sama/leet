@@ -55,7 +55,10 @@ function * depthFirstSearch<T>(node:T, keys=["left", "right"], value="val"): Ite
    while (stack.length) {
       curr = stack.pop()!
       yield curr[value]
-      for (const key of keys) if (key in curr) stack.push(curr[key])
+      for (const key of keys) {
+         const node = curr?.[key]
+         if (node) stack.push(node)
+      }
    }
 }
 
@@ -65,7 +68,10 @@ function * breadthFirstSearch<T>(node:T, keys=["left", "right"], value="val"): I
    while (queue.length) {
       curr = queue.shift()!
       yield curr[value]
-      for (const key of keys) if (key in curr) queue.push(curr[key])
+      for (const key of keys) {
+         const node = curr?.[key]
+         if (node) queue.push(node)
+      }
    }
 }
 
@@ -82,11 +88,20 @@ let tree = {
    },
    right: {
       val: "right",
+      left: {
+         val: null,
+         right: {
+            val: "right.right",
+         },
+         left: {
+            val: null,
+         }
+      },
       right: {
          val: "right.right",
+         right: null,
       }
    }
 }
 
 let walk = breadthFirstSearch(tree)
-for (const w of walk) console.log(w)
