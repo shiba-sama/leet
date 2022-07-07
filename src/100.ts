@@ -20,7 +20,7 @@ type BST = TreeNode | null
 function isSameTree(一:BST, 二:BST) {
    if (一 === null || 二 === null) return 一 === 二
 
-   return 一.val === 二.val 
-      && isSameTree(一.left, 二.left) 
+   return 一.val === 二.val
+      && isSameTree(一.left, 二.left)
       && isSameTree(一.right, 二.right)
 }
