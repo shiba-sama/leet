@@ -32,8 +32,8 @@ pub fn tree_equality(一: BST, 二: BST) -> bool {
       (Some(一), Some(二)) => {
          let 一 = 一.borrow();
          let 二 = 二.borrow();
-         一.val == 二.val 
-            && tree_equality(一.left.clone(), 二.left.clone()) 
+         一.val == 二.val
+            && tree_equality(一.left.clone(), 二.left.clone())
             && tree_equality(一.right.clone(), 二.right.clone())
       },
       (None, None) => true,
@@ -42,7 +42,7 @@ pub fn tree_equality(一: BST, 二: BST) -> bool {
 }
 
 pub fn is_same_tree(一: BST, 二: BST) -> bool {
-   return 一 == 二
+   return 一 == 二!
 }
 
 fn main() {
