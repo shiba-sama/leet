@@ -1,10 +1,5 @@
 // —————————————————————————————————————————————————————————————————————————————
-// Solve
-
-function isPalindrome1(str:string) {
-   const clean = str.replace(/[^a-z0-9]/gi, "").toLowerCase()
-   return clean === clean.split("").reverse().join("")
-}
+// Environment
 
 const letter = new Set([
    "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m",
@@ -13,6 +8,14 @@ const letter = new Set([
    "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
    "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"
 ])
+
+// —————————————————————————————————————————————————————————————————————————————
+// Solve
+
+function isPalindrome1(str:string) {
+   const clean = str.replace(/[^a-z0-9]/gi, "").toLowerCase()
+   return clean === clean.split("").reverse().join("")
+}
 
 function isPalindrome2(str:string) {
    let forward = 0
