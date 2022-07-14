@@ -35,8 +35,8 @@ function isPalindrome2(str:string) {
    let next = 0
    let back = str.length - 1
    while (next < back) {
-      const l1 = str[next].toLocaleLowerCase()
-      const l2 = str[back].toLocaleLowerCase()
+      const l1 = str[next].toLowerCase()
+      const l2 = str[back].toLowerCase()
       if (!letter.has(l1)) next++
       else if (!letter.has(l2)) back--
       else if (l1 !== l2) return false
@@ -51,7 +51,7 @@ function isPalindrome3(str:string) {
    while (next < back) {
       while (!letter.has(str[next]) && next < back) next++
       while (!letter.has(str[back]) && next < back) back--
-      if (str[next].toLocaleLowerCase() !== str[back].toLocaleLowerCase()) 
+      if (str[next].toLowerCase() !== str[back].toLowerCase()) 
          return false
       else next++, back--
    }
