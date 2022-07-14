@@ -9,8 +9,22 @@ const letter = new Set([
    "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"
 ])
 
+function isAlphanumeric(letter:string) {
+   const code = letter.charCodeAt(0)
+   return (code > 47 && code < 58) // numeric (0-9)
+      || (code > 64 && code < 91)  // upper alpha (A-Z)
+      || (code > 96 && code < 123) // lower alpha (a-z)
+}
+
 // —————————————————————————————————————————————————————————————————————————————
-// Solve
+// 
+
+function isPalindrome0(str:string) {
+   const clean = str.replace(/[^a-z0-9]/gi, "").toLowerCase()
+   for (let i = 0; i < clean.length; i++)
+      if (clean[i] !== clean[clean.length - i - 1]) return false
+   return true
+}
 
 function isPalindrome1(str:string) {
    const clean = str.replace(/[^a-z0-9]/gi, "").toLowerCase()
@@ -18,15 +32,28 @@ function isPalindrome1(str:string) {
 }
 
 function isPalindrome2(str:string) {
-   let forward = 0
-   let backward = str.length - 1
-   while (forward < backward) {
-      const l1 = str[forward].toLocaleLowerCase()
-      const l2 = str[backward].toLocaleLowerCase()
-      if (!letter.has(l1)) forward++
-      else if (!letter.has(l2)) backward--
+   let next = 0
+   let back = str.length - 1
+   while (next < back) {
+      const l1 = str[next].toLocaleLowerCase()
+      const l2 = str[back].toLocaleLowerCase()
+      if (!letter.has(l1)) next++
+      else if (!letter.has(l2)) back--
       else if (l1 !== l2) return false
-      else forward++, backward--
+      else next++, back--
+   }
+   return true
+}
+
+function isPalindrome3(str:string) {
+   let next = 0
+   let back = str.length - 1
+   while (next < back) {
+      while (!letter.has(str[next]) && next < back) next++
+      while (!letter.has(str[back]) && next < back) back--
+      if (str[next].toLocaleLowerCase() !== str[back].toLocaleLowerCase()) 
+         return false
+      else next++, back--
    }
    return true
 }
