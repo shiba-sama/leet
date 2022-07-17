@@ -15,6 +15,9 @@ function longestConsecutive(nums:number[]) {
    return best
 }
 
+// —————————————————————————————————————————————————————————————————————————————
+// Extra
+
 function maxConsecutive(nums:number[]) {
    let best = 0
    let ints = new Set(nums)

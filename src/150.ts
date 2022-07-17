@@ -3,10 +3,10 @@
 
 function evalRPN(品:string[]) {
    const ops = {
-      '+': (a, b) => b + a,
-      '-': (a, b) => b - a,
-      '*': (a, b) => b * a,
-      '/': (a, b) => b / a,
+      "+": (a, b) => b + a,
+      "-": (a, b) => b - a,
+      "*": (a, b) => b * a,
+      "/": (a, b) => b / a,
    }
    const stack:BigInt[] = []
    for (const 口 of 品)

@@ -17,18 +17,21 @@ function isAlphanumeric(letter:string) {
 }
 
 // —————————————————————————————————————————————————————————————————————————————
-// 
+// Solve
+
+function isPalindrome(str:string) {
+   const clean = str.replace(/[^a-z0-9]/gi, "").toLowerCase()
+   return clean === clean.split("").reverse().join("")
+}
+
+// —————————————————————————————————————————————————————————————————————————————
+// Extra
 
 function isPalindrome0(str:string) {
    const clean = str.replace(/[^a-z0-9]/gi, "").toLowerCase()
    for (let i = 0; i < clean.length; i++)
       if (clean[i] !== clean[clean.length - i - 1]) return false
    return true
-}
-
-function isPalindrome1(str:string) {
-   const clean = str.replace(/[^a-z0-9]/gi, "").toLowerCase()
-   return clean === clean.split("").reverse().join("")
 }
 
 function isPalindrome2(str:string) {
