@@ -1,9 +1,9 @@
-function twoSum(品: number[], target: number) {
+function twoSum(nats: number[], target: number) {
    const seen = new Map<number, number>()
-   for (let i=0; i<品.length; i++) {
-      const Δ = target - 品[i]
+   for (let i=0; i<nats.length; i++) {
+      const Δ = target - nats[i]
       if (seen.has(Δ)) return [seen.get(Δ), i]
-      seen.set(品[i], i)
+      seen.set(nats[i], i)
    }
    return false
 }
