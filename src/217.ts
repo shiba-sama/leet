@@ -1,3 +1,6 @@
+// —————————————————————————————————————————————————————————————————————————————
+// Solve
+
 function containsDuplicate(nats: number[]) {
    const seen = new Set<number>()
    for (const n of nats) {
