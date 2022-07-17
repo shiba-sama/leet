@@ -4,7 +4,7 @@ function isValid(parens:string) {
    const stack:string[] = []
    for (const p of parens) {
       if (p in pairs) stack.push(p)
-      else if (!stack.length || pairs[stack.pop()!] !== p) return false
+      else if (pairs[stack.pop()!] !== p) return false
    }
    return stack.length === 0
 }
