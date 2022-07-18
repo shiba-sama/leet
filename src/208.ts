@@ -2,8 +2,12 @@
 // Trie
 
 class Node {
-   kids   = {}
    isWord = false
+   constructor() {
+      Object.defineProperty(this, "isWord", {
+         enumerable: false,
+      })
+   }
 }
 
 class Trie {
@@ -12,8 +16,8 @@ class Trie {
    insert(word:string) {
       let curr = this.root
       for (const letter of word) {
-         if (!(letter in curr.kids)) curr.kids[letter] = new Node()
-         curr = curr.kids[letter]
+         curr[letter] ??= new Node()
+         curr = curr[letter]
       }
       curr.isWord = true
    }
@@ -21,8 +25,8 @@ class Trie {
    search(word:string) {
       let curr = this.root
       for (const letter of word) {
-         if (!(letter in curr.kids)) return false
-         curr = curr.kids[letter]
+         if (!(letter in curr)) return false
+         curr = curr[letter]
       }
       return curr.isWord
    }
@@ -30,8 +34,8 @@ class Trie {
    startsWith(word:string) {
       let curr = this.root
       for (const letter of word) {
-         if (!(letter in curr.kids)) return false
-         curr = curr.kids[letter]
+         if (!(letter in curr)) return false
+         curr = curr[letter]
       }
       return true
    }
