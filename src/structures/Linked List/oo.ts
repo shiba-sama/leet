@@ -22,15 +22,15 @@ const none = Symbol("none")
 // Atom
 
 class Node {
-   constructor(value=none, next?:Node) {
+   constructor(value:any=none, next?:Node) {
       this.value = value
       this.next = next
    }
 }
 
 class List {
-   root: Node | undefined = undefined
-   size: number = 0
+   root:Node|undefined = undefined
+   size:number = 0
 
    shift(value: any) {
       this.root = new Node(value, this.root)
