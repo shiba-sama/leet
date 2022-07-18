@@ -1,5 +1,5 @@
 // —————————————————————————————————————————————————————————————————————————————
-// Solve
+// Reverse Polish Notation
 
 function evalRPN(品:string[]) {
    const ops = {
