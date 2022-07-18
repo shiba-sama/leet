@@ -1,16 +1,16 @@
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // Type
 
-interface List {
-   root: Node | undefined // undefined if 0
-   size: number
-   newList(...args): [Node, Node]
-}
-
 interface Node {
    value: any
    next: Node | undefined // undefined if last
    constructor(value?: any, next?: Node)
+}
+
+interface List {
+   root: Node | undefined // undefined if 0
+   size: number
+   newList(...args): [Node, Node]
 }
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -32,12 +32,12 @@ class List {
    root: Node | undefined = undefined
    size: number = 0
 
-   push(value: any) {
+   shift(value: any) {
       this.root = new Node(value, this.root)
       return ++this.size
    }
 
-   pop() {
+   unshift() {
       if (this.size === 0) return undefined
       const root = this.root
       this.root = root?.next // undefined if last
@@ -54,7 +54,7 @@ class List {
    reverse() {
       const list = new List()
       let curr = this.root
-      while (curr) list.push(curr.value), curr = curr.next
+      while (curr) list.shift(curr.value), curr = curr.next
       return list
    }
 }
@@ -63,9 +63,9 @@ class List {
 // Test
 
 let l = new List()
-l.push(1)
-l.push(2)
-l.push(3)
+l.shift(1)
+l.shift(2)
+l.shift(3)
 
 let reverse = l.reverse()
 
