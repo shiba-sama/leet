@@ -8,9 +8,8 @@ type Groups = {
 // —————————————————————————————————————————————————————————————————————————————
 // Group Anagrams
 
-function groupAnagrams(strings:string[]): string[][] {
+function groupAnagrams(strings:string[]) {
    const seen:Groups = {}
-
    for (const str of strings) {
       const sorted = str.split("").sort().join("")
       sorted in seen
