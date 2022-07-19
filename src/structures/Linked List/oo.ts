@@ -54,7 +54,7 @@ class List {
    reverse() {
       const list = new List()
       let curr = this.root
-      while (curr) list.shift(curr.value), curr = curr.next
+      while (curr) list.unshift(curr.value), curr = curr.next
       return list
    }
 }
@@ -63,9 +63,9 @@ class List {
 // Test
 
 let l = new List()
-l.shift(1)
-l.shift(2)
-l.shift(3)
+l.unshift(1)
+l.unshift(2)
+l.unshift(3)
 
 let reverse = l.reverse()
 
