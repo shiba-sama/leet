@@ -9,6 +9,7 @@ const none = Symbol("none")
 class Node {
    value:any
    next?:Node|undefined
+
    constructor(value:any=none, next?:Node) {
       this.value = value
       this.next = next
@@ -28,7 +29,7 @@ class List {
    shift() {
       const root = this.root
       this.root = root?.next
-      this.size--
+      this.size && this.size--
       return root?.value
    }
 
