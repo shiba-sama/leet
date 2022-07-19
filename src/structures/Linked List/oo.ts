@@ -32,12 +32,12 @@ class List {
    root:Node|undefined = undefined
    size:number = 0
 
-   shift(value: any) {
+   unshift(value: any) {
       this.root = new Node(value, this.root)
       return ++this.size
    }
 
-   unshift() {
+   shift() {
       if (this.size === 0) return undefined
       const root = this.root
       this.root = root?.next // undefined if last
