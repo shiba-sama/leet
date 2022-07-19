@@ -24,6 +24,7 @@ class List {
       return ++this.size
    }
 
+   /** Returns `undefined` if empty list. */
    shift() {
       const root = this.root
       this.root = root?.next
