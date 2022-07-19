@@ -29,7 +29,7 @@ class List {
    shift() {
       const root = this.root
       this.root = root?.next
-      this.size && this.size--
+      this.size &&= this.size - 1
       return root?.value
    }
 
