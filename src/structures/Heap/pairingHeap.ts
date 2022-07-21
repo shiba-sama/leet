@@ -1,9 +1,14 @@
+// —————————————————————————————————————————————————————————————————————————————
+// Environment
+
 class Node<T> {
    口: T
    kids: Node<T>[] = []
-
    constructor(口:T) { this.口 = 口 }
 }
+
+// —————————————————————————————————————————————————————————————————————————————
+// Minimum Pairing Heap
 
 class MinPairingHeap<T> {
    root: Node<T>|undefined = undefined
@@ -42,6 +47,9 @@ class MinPairingHeap<T> {
       return top
    }
 }
+
+// —————————————————————————————————————————————————————————————————————————————
+// Test
 
 let h = new MinPairingHeap()
 h.in(4)
