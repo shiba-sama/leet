@@ -8,18 +8,21 @@ class Node<T> {
 }
 
 // —————————————————————————————————————————————————————————————————————————————
-// Minimum Pairing Heap
+// Pairing Heap
 
-class MinPairingHeap<T> {
+class PairingHeap<T> {
    root: Node<T>|undefined = undefined
    size: number = 0
+   #λ: (a:T, b:T) => boolean
 
-   get min() { return this.root && this.root.口 }
+   constructor(λ = (a:T, b:T) => a < b) { this.#λ = λ }
+
+   get top() { return this.root && this.root.口 }
 
    #merge(一:Node<T>|undefined, 二:Node<T>|undefined) {
       if (!一) return 二
       if (!二) return 一
-      if (一.口 < 二.口) {
+      if (this.#λ(一.口, 二.口)) {
          一.kids.push(二)
          return 一
       }
@@ -51,10 +54,12 @@ class MinPairingHeap<T> {
 // —————————————————————————————————————————————————————————————————————————————
 // Test
 
-let h = new MinPairingHeap()
+let h = new PairingHeap<number>()
 h.in(4)
 h.in(1)
 h.in(3)
+h.in(6)
 h.in(0)
 h.in(2)
 h.in(5)
+h.in(7)
