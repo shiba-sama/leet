@@ -10,3 +10,10 @@ function quickSelect<T>(arr:T[], kth:number): T {
    if (小.length > kth) return quickSelect(小, kth)
    return quickSelect(大, kth - 小.length - 1)   
 }
+
+// —————————————————————————————————————————————————————————————————————————————
+// Quick Select
+
+const arr = [3,2,3,1,2,4,5,5,6]
+const kth = 4
+console.log(quickSelect(arr, kth))

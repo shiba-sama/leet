@@ -9,6 +9,7 @@
       "exactOptionalPropertyTypes": true,
       "strictNullChecks": true,
       "strictFunctionTypes": true,
+      "noUncheckedIndexedAccess": true,
 
    // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
    // Compiler

@@ -4,7 +4,7 @@
         {
             "request": "launch",
             "name": "Launch Program",
-            "type": "pwa-node",
+            "type": "node",
             "program": "${workspaceFolder}/src/server.ts",
             "cwd": "${workspaceFolder}",
             "runtimeExecutable": "deno",
@@ -14,7 +14,9 @@
                 "--import-map",
                 "./import_map.json",
                 "--inspect",
-                "--allow-all"
+                "--inspect-brk",
+                "--allow-all",
+                "${file}"
             ],
             "attachSimplePort": 9229
         }
