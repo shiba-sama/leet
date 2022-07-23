@@ -6,26 +6,25 @@ const none = Symbol("none")
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // Atom
 
-class Node {
-   value:any
-   next?:Node|undefined
+class Node<T> {
+   value?: T
+   next?: Node<T>
 
-   constructor(value:any=none, next?:Node) {
+   constructor(value?:T, next?:Node<T>) {
       this.value = value
       this.next = next
    }
 }
 
-class List {
-   root:Node|undefined = undefined
-   size:number = 0
+class List<T> {
+   root?: Node<T>
+   size = 0
 
-   unshift(value:any) {
+   unshift(value:T) {
       this.root = new Node(value, this.root)
       return ++this.size
    }
 
-   /** Returns `undefined` if empty list. */
    shift() {
       const root = this.root
       this.root = root?.next
