@@ -39,17 +39,29 @@ class List<T> {
    }
 
    reverse() {
-      const list = new List()
+      const list = new List<T>()
       let curr = this.root
-      while (curr) list.unshift(curr.value), curr = curr.next
+      while (curr) list.unshift(curr.value!), curr = curr.next
       return list
+   }
+
+   $reverse() {
+      let 今 = this.root
+      let 上, 下
+      while (今) {
+         下 = 今.next
+         今.next = 上
+         上 = 今
+         今 = 下
+      }
+      this.root = 上
    }
 }
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // Test
 
-let l = new List()
+let l = new List<number>()
 l.unshift(1)
 l.unshift(2)
 l.unshift(3)
