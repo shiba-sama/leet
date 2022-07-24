@@ -2,14 +2,14 @@
 // Types
 
 interface 森 {
-   root: 木 | undefined;
+   root?: 木;
    size: number;
 }
 
 interface 木 {
    口: number
-   小: 木 | undefined
-   大: 木 | undefined
+   小?: 木
+   大?: 木
 }
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -42,10 +42,8 @@ class 森 {
 // Atoms
 
 class 木 {
-   constructor(value) {
-      this.口 = value
-      this.小 = undefined
-      this.大 = undefined
+   constructor(口) {
+      this.口 = 口
    }
 
    insert(口) {
