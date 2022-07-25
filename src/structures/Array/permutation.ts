@@ -1,6 +1,7 @@
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // Permutation
 
+/** Yield permutations through Heap's Method. */
 function * permute<T>(arr:T[], n = arr.length): IterableIterator<T[]> {
    if (n <= 1) yield arr
    else for (let i = 0; i < n; i++) {
