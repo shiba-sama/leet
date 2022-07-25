@@ -28,12 +28,17 @@ class Node {
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // Test
 
-let n = new Node(0)
-n.add(-10)
-n.add(-10)
-n.add(10)
-n.add(10)
-n.add(0)
-n.add(-20)
-n.add(20)
-n.add(10)
+let t = new Node(0)
+t.add(-10)
+t.add(-10)
+t.add(10)
+t.add(10)
+t.add(0)
+t.add(-20)
+t.add(20)
+t.add(10)
+t.add(-1)
+
+console.log(
+   [-20, -10, -1, 0, 10, 20].every(n => t.has(n))
+)
