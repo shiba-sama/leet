@@ -1,21 +1,21 @@
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // Types
 
-interface 森 {
-   root?: 木;
+interface Tree {
+   root?: Node;
    size: number;
 }
 
-interface 木 {
+interface Node {
    口: number
-   小?: 木
-   大?: 木
+   small?: Node
+   big?: Node
 }
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // Binary Search Tree (BST)
 
-class 森 {
+class Tree {
    constructor() {
       this.root = undefined;
       this.size = 0;
@@ -23,48 +23,52 @@ class 森 {
 
    add(口: number) {
       if (this.root === undefined) {
-         this.root = new 木(口)
+         this.root = new Node(口)
          return ++this.size
       }
 
-      if (!this.root.insert(口)) return this.size
+      if (!this.root.add(口)) return this.size
       else return ++this.size
    }
 
    contains(口: number) {
       return this.root === undefined
          ? false
-         : this.root.contains(口)
+         : this.root.has(口)
    }
 }
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // Atoms
 
-class 木 {
-   constructor(口) {
+class Node {
+   constructor(口: number) {
       this.口 = 口
    }
 
-   insert(口) {
+   add(口: number) {
       if (口 === this.口) return false
-      const next = 口 < this.口 ? '小' : '大'
-      if (this[next] === undefined) this[next] = new 木(口)
-      else this[next].insert(口)
+      const next = 口 < this.口 ? 'small' : 'big'
+      if (this[next] === undefined) this[next] = new Node(口)
+      else this[next].add(口)
    }
 
-   contains(口) {
+   has(口: number) {
       if (口 === this.口) return true
-      const next = 口 < this.口 ? '小' : '大'
-      return !!this[next]?.contains(口)
+      const next = 口 < this.口 ? 'small' : 'big'
+      return !!this[next]?.has(口)
    }
 }
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // Test
 
-let n = new 木(0)
-n.insert(-10)
-n.insert(-10)
-n.insert(10)
-n.insert(10)
+let n = new Node(0)
+n.add(-10)
+n.add(-10)
+n.add(10)
+n.add(10)
+n.add(0)
+n.add(-20)
+n.add(20)
+n.add(10)
