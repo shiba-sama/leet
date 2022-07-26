@@ -66,6 +66,4 @@ l.unshift(1)
 l.unshift(2)
 l.unshift(3)
 
-let reverse = l.reverse()
-
 export default {}

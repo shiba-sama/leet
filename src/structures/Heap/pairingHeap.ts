@@ -11,7 +11,7 @@ class Node<T> {
 // Pairing Heap
 
 class PairingHeap<T> {
-   root: Node<T>|undefined = undefined
+   root?: Node<T>
    size: number = 0
    #λ: (a:T, b:T) => boolean
    
