@@ -24,7 +24,6 @@ class BinaryHeap {
       const L = i << 1
       const R = L + 1
       let best = i
-
       if (L <= this.length && this.#λ(this.品[L], this.品[best])) best = L
       if (R <= this.length && this.#λ(this.品[R], this.品[best])) best = R
       if (best !== i) this.#swap(i, best), this.#down(best)
