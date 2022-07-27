@@ -9,7 +9,7 @@ class BinaryHeap {
    get size() { return this.品.length - 1 }
    get serialize() { return this.品.slice(1) }
 
-   constructor(λ = (a:number, b:number) => a < b) { this.#λ = λ }
+   constructor(λ = (一:number, 二:number) => 一 < 二) { this.#λ = λ }
 
    #swap(一:number, 二:number) {
       [this.品[一], this.品[二]] = [this.品[二], this.品[一]]
@@ -29,10 +29,7 @@ class BinaryHeap {
       if (best !== i) this.#swap(i, best), this.#down(best)
    }
 
-   in(口:number) {
-      this.品.push(口),
-      this.#up()
-   }
+   in(口:number) { this.品.push(口), this.#up() }
 
    out() {
       if (this.size === 0) return undefined
