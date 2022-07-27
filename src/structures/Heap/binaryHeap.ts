@@ -48,9 +48,11 @@ class BinaryHeap {
 // Test
 
 const b = new BinaryHeap()
+b.in(6)
 b.in(4)
 b.in(1)
 b.in(3)
 b.in(0)
 b.in(2)
+b.in(7)
 b.in(5)
