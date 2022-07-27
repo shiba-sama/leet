@@ -2,22 +2,21 @@
 // Solve
 
 class MinStack {
-   stack:number[] = []
-   min = Infinity
+   品:number[] = []
+   小 = Infinity
 
-   push(x:number) {
-      this.stack.push(x)
-      this.min = Math.min(this.min, x)
+   push(口:number) {
+      this.品.push(口)
+      this.小 = Math.min(this.小, 口)
    }
 
    pop() {
-      const x = this.stack.pop()
-      if (x === this.min) {
-         this.min = this.stack.reduce((a, b) => Math.min(a, b), Infinity)
-      }
-      return x
+      const 口 = this.品.pop()
+      if (口 === this.小) 
+         this.小 = this.品.reduce((a, b) => Math.min(a, b), Infinity)
+      return 口
    }
 
-   top() { return this.stack.at(-1) }
-   getMin() { return this.min }
+   top() { return this.品.at(-1) }
+   getMin() { return this.小 }
 }

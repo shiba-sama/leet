@@ -1,3 +1,6 @@
+// —————————————————————————————————————————————————————————————————————————————
+// Check if two strings are Anagrams
+
 function isAnagram(一:string, 二:string) {
    if (一.length !== 二.length) return false
    const seen = Array.from({ length: 26 }, () => 0)
