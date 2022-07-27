@@ -1,3 +1,6 @@
+// —————————————————————————————————————————————————————————————————————————————
+// Valid Brackets
+
 function isValid(parens:string) {
    if (parens.length % 2 !== 0) return false
    const pairs = { "(": ")", "[": "]", "{": "}" }
