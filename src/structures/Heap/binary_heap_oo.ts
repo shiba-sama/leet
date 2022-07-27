@@ -1,14 +1,3 @@
-/**
-
-If starting index is `1`:
-   - parent of a node: `n >> 1`
-   - children: `n << 1` and `n << 1 + 1`
-
-If starting index is `0`:
-   - parent of a node at `n` is `(n - 1) >> 1`
-
-*/
-
 // —————————————————————————————————————————————————————————————————————————————
 // Binary Heap
 
