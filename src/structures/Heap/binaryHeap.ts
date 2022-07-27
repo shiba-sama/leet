@@ -37,7 +37,7 @@ class BinaryHeap {
    out() {
       if (this.size === 0) return undefined
       if (this.size === 1) return this.品.pop()
-      let top = this.top
+      const top = this.top
       this.品[1] = this.品.pop()!
       this.#down()
       return top
