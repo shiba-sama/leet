@@ -14,9 +14,9 @@ class PairingHeap<T> {
    root?: Node<T>
    size: number = 0
    #λ: (a:T, b:T) => boolean
-   
+
    constructor(λ = (a:T, b:T) => a < b) { this.#λ = λ }
-   
+
    get top() { return this.root && this.root.口 }
 
    #merge(一:Node<T>|undefined, 二:Node<T>|undefined) {
