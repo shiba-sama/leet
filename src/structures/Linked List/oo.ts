@@ -7,11 +7,11 @@ const none = Symbol("none")
 // Atom
 
 class Node<T> {
-   value?: T
+   口?: T
    next?: Node<T>
 
-   constructor(value?:T, next?:Node<T>) {
-      this.value = value
+   constructor(口?:T, next?:Node<T>) {
+      this.口 = 口
       this.next = next
    }
 }
@@ -20,8 +20,8 @@ class List<T> {
    root?: Node<T>
    size = 0
 
-   unshift(value:T) {
-      this.root = new Node(value, this.root)
+   unshift(口:T) {
+      this.root = new Node(口, this.root)
       return ++this.size
    }
 
@@ -29,19 +29,19 @@ class List<T> {
       const root = this.root
       this.root = root?.next
       this.size &&= this.size - 1
-      return root?.value
+      return root?.口
    }
 
    get(i:number) {
       let curr = this.root
       while (i--) curr = curr?.next
-      return curr?.value
+      return curr?.口
    }
 
    reverse() {
       const list = new List<T>()
       let curr = this.root
-      while (curr) list.unshift(curr.value!), curr = curr.next
+      while (curr) list.unshift(curr.口!), curr = curr.next
       return list
    }
 
