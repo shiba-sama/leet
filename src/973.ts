@@ -3,8 +3,7 @@
 
 type point = [number, number]
 
-function norm(v: number[]) { return Math.hypot(...v) }
-function dist(p:point) { return p[0]**2 + p[1]** 2}
+function dist(p:point) { return p[0]**2 + p[1]**2 }
 
 // —————————————————————————————————————————————————————————————————————————————
 // K Largest Euclidian Norms
