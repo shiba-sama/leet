@@ -45,7 +45,7 @@ class BinaryHeap<T> {
 // Kth largest element in a stream
 
 class KthLargest {
-   heap = new BinaryHeap()
+   heap = new BinaryHeap<number>()
    k:number
    constructor(k:number, nums:number[]) {
       this.k = k
