@@ -3,12 +3,6 @@
 
 const MIN_RUN = 32
 
-function * range(start, end) { for (let i = start; i < end; i++) yield i }
-function * naturals(n) { for (let i = 0; i < n; i++) yield i }
-
-// —————————————————————————————————————————————————————————————————————————————
-// Quick Sort
-
 function minRun(n) {
    let r = 0
    while (n >= MIN_RUN) r |= n & 1, n >>= 1
@@ -24,13 +18,13 @@ function insertionSort(品:number[], 小:number, 大:number) {
    }
 }
 
-function merge(品:number[], l, m, r) {
+function merge(品:number[], l:number, m:number, r:number) {
    const arr_length1 = m - l + 1
    const arr_length2 = r - m
-   const left = [] as number[]
-   const right = [] as number[]
-   for (const i in naturals(arr_length1)) left.push(品[l + i])
-   for (const i in naturals(arr_length2)) right.push(品[m + i + 1])
+   const left:number[] = []
+   const right:number[] = []
+   for (let i = 0; i < arr_length1; i++) left.push(品[l + i])
+   for (let i = 0; i < arr_length2; i++) right.push(品[m + i + 1])
 
    let i = 0
    let j = 0
@@ -45,6 +39,9 @@ function merge(品:number[], l, m, r) {
    while (i < arr_length1) 品[k] = left[i], i++, k++
    while (j < arr_length2) 品[k] = right[j], j++, k++
 }
+
+// —————————————————————————————————————————————————————————————————————————————
+// Tim Sort
 
 function timSort(品:number[]) {
    const n = 品.length
@@ -70,6 +67,7 @@ function timSort(品:number[]) {
 // Test
 
 let arr = [10, 0, 1, 9, 2, 8, 3, 7, 4, 6, 5]
+
 console.log(
    timSort(arr)
 )
