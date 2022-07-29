@@ -21,23 +21,23 @@ function insertionSort(品:number[], 小:number, 大:number) {
 function merge(品:number[], 小:number, 中:number, 大:number) {
    const arr_length1 = 中 - 小 + 1
    const arr_length2 = 大 - 中
-   const left:number[] = []
-   const right:number[] = []
-   for (let i = 0; i < arr_length1; i++) left.push(品[小 + i])
-   for (let i = 0; i < arr_length2; i++) right.push(品[中 + i + 1])
+   const 品小:number[] = []
+   const 品大:number[] = []
+   for (let i = 0; i < arr_length1; i++) 品小.push(品[小 + i])
+   for (let i = 0; i < arr_length2; i++) 品大.push(品[中 + i + 1])
 
    let i = 0
    let j = 0
    let k = 小
 
    while (i < arr_length1 && j < arr_length2) {
-      if (left[i] <= right[j]) 品[k] = left[i], i++
-      else 品[k] = right[j], j++
+      if (品小[i] <= 品大[j]) 品[k] = 品小[i], i++
+      else 品[k] = 品大[j], j++
       k++
    }
 
-   while (i < arr_length1) 品[k] = left[i], i++, k++
-   while (j < arr_length2) 品[k] = right[j], j++, k++
+   while (i < arr_length1) 品[k] = 品小[i], i++, k++
+   while (j < arr_length2) 品[k] = 品大[j], j++, k++
 }
 
 // —————————————————————————————————————————————————————————————————————————————
@@ -50,14 +50,14 @@ function timSort(品:number[]) {
    for (let start = 0; start < n; start += minrun)
       insertionSort(品, start, Math.min(start + minrun - 1, n - 1))
 
-   let size = minrun
-   while (size < n) {
-      for (let left = 0; left < n; left += 2 * size) {
-         const mid = Math.min(n - 1, left + size - 1)
-         const right = Math.min((left + 2 * size - 1), (n - 1))
-         merge(品, left, mid, right)
+   let run = minrun
+   while (run < n) {
+      for (let 小 = 0; 小 < n; 小 += 2 * run) {
+         const 中 = Math.min(n - 1, 小 + run - 1)
+         const 大 = Math.min((小 + 2 * run - 1), (n - 1))
+         merge(品, 小, 中, 大)
       }
-      size = 2 * size
+      run *= 2
    }
 
    return 品
