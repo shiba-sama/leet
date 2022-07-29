@@ -18,17 +18,17 @@ function insertionSort(品:number[], 小:number, 大:number) {
    }
 }
 
-function merge(品:number[], l:number, m:number, r:number) {
-   const arr_length1 = m - l + 1
-   const arr_length2 = r - m
+function merge(品:number[], 小:number, 中:number, 大:number) {
+   const arr_length1 = 中 - 小 + 1
+   const arr_length2 = 大 - 中
    const left:number[] = []
    const right:number[] = []
-   for (let i = 0; i < arr_length1; i++) left.push(品[l + i])
-   for (let i = 0; i < arr_length2; i++) right.push(品[m + i + 1])
+   for (let i = 0; i < arr_length1; i++) left.push(品[小 + i])
+   for (let i = 0; i < arr_length2; i++) right.push(品[中 + i + 1])
 
    let i = 0
    let j = 0
-   let k = l
+   let k = 小
 
    while (i < arr_length1 && j < arr_length2) {
       if (left[i] <= right[j]) 品[k] = left[i], i++
