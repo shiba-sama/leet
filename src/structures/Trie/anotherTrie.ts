@@ -56,6 +56,12 @@ class Trie {
 
       return matches
    }
+
+   #traverse(word:string) {
+      let curr = this.root
+      for (const w of word) curr = curr[w]
+      return curr
+   }
 }
 
 // —————————————————————————————————————————————————————————————————————————————
