@@ -64,11 +64,12 @@ class Trie {
 
 const t = new Trie()
 t.insert("hello")
+t.insert("hello")
+t.insert("hello")
 t.insert("hell")
 t.insert("he")
 t.insert("helio")
 t.insert("helium")
-
 
 // —————————————————————————————————————————————————————————————————————————————
 // Export
