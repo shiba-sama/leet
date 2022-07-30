@@ -39,7 +39,36 @@ class Trie {
       }
       return true
    }
+
+   getPrefixes(prefix:string) {
+      const matches:string[] = []
+
+      let curr = this.root
+      for (const p of prefix) {
+         if (!(p in curr)) return matches
+         curr = curr[p]
+      }
+
+      function traverse(node:Node, path:string) {
+         if (node.isWord) matches.push(path)
+         for (const letter in node) traverse(node[letter], path + letter)
+      }
+      traverse(curr, prefix)
+
+      return matches
+   }
 }
+
+// —————————————————————————————————————————————————————————————————————————————
+// Test
+
+const t = new Trie()
+t.insert("hello")
+t.insert("hell")
+t.insert("he")
+t.insert("helio")
+t.insert("helium")
+
 
 // —————————————————————————————————————————————————————————————————————————————
 // Export
