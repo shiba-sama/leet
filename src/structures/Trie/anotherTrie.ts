@@ -49,17 +49,17 @@ class Trie {
          curr = curr[p]
       }
 
-      +function traverse(node:Node, path:string) {
+      (function traverse(node:Node, path:string) {
          if (node.isWord) matches.push(path)
          for (const letter in node) traverse(node[letter], path + letter)
-      }(curr, prefix)
+      }(curr, prefix))
 
       return matches
    }
 
-   #traverse(word:string) {
+   traverse(word:string): Node | undefined {
       let curr = this.root
-      for (const w of word) curr = curr[w]
+      for (const w of word) curr = curr?.[w]
       return curr
    }
 }
