@@ -15,27 +15,27 @@ class Trie {
 
    insert(word:string) {
       let curr = this.root
-      for (const letter of word) {
-         curr[letter] ??= new Node()
-         curr = curr[letter]
+      for (const w of word) {
+         curr[w] ??= new Node()
+         curr = curr[w]
       }
       curr.isWord = true
    }
 
    has(word:string) {
       let curr = this.root
-      for (const letter of word) {
-         if (!(letter in curr)) return false
-         curr = curr[letter]
+      for (const w of word) {
+         if (!(w in curr)) return false
+         curr = curr[w]
       }
       return curr.isWord
    }
 
    hasPrefix(prefix:string) {
       let curr = this.root
-      for (const letter of prefix) {
-         if (!(letter in curr)) return false
-         curr = curr[letter]
+      for (const p of prefix) {
+         if (!(p in curr)) return false
+         curr = curr[p]
       }
       return true
    }
@@ -49,11 +49,10 @@ class Trie {
          curr = curr[p]
       }
 
-      function traverse(node:Node, path:string) {
+      +function traverse(node:Node, path:string) {
          if (node.isWord) matches.push(path)
          for (const letter in node) traverse(node[letter], path + letter)
-      }
-      traverse(curr, prefix)
+      }(curr, prefix)
 
       return matches
    }
