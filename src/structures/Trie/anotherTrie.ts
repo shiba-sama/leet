@@ -22,7 +22,7 @@ class Trie {
       curr.isWord = true
    }
 
-   search(word:string) {
+   has(word:string) {
       let curr = this.root
       for (const letter of word) {
          if (!(letter in curr)) return false
@@ -31,9 +31,9 @@ class Trie {
       return curr.isWord
    }
 
-   startsWith(word:string) {
+   hasPrefix(prefix:string) {
       let curr = this.root
-      for (const letter of word) {
+      for (const letter of prefix) {
          if (!(letter in curr)) return false
          curr = curr[letter]
       }
