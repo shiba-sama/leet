@@ -13,7 +13,7 @@ class Node {
 class Trie {
    root = new Node()
 
-   insert(word:string) {
+   add(word:string) {
       let curr = this.root
       for (const w of word) {
          curr[w] ??= new Node()
@@ -22,7 +22,7 @@ class Trie {
       curr.isWord = true
    }
 
-   has(word:string) {
+   hasWord(word:string) {
       let curr = this.root
       for (const w of word) {
          if (!(w in curr)) return false
@@ -62,13 +62,17 @@ class Trie {
 // Test
 
 const t = new Trie()
-t.insert("hello")
-t.insert("hello")
-t.insert("hello")
-t.insert("hell")
-t.insert("he")
-t.insert("helio")
-t.insert("helium")
+t.add("hello")
+t.add("hello")
+t.add("hello")
+t.add("hell")
+t.add("he")
+t.add("helio")
+t.add("helium")
+
+console.log(
+   t.getPrefixes("hel")
+)
 
 // —————————————————————————————————————————————————————————————————————————————
 // Export
