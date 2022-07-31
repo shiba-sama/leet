@@ -38,15 +38,13 @@ class Trie {
       const matches:string[] = []
 
       let curr = this.root
-      for (const p of prefix) {
-         if (!(p in curr)) return matches
-         curr = curr[p]
-      }
+      for (const p of prefix) curr = curr?.[p]
+      if (!curr) return matches
 
-      (function traverse(node:Node, path:string) {
+      ;+function traverse(node:Node, path:string) {
          if (node.isWord) matches.push(path)
          for (const letter in node) traverse(node[letter], path + letter)
-      }(curr, prefix))
+      }(curr, prefix)
 
       return matches
    }
