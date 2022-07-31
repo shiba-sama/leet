@@ -24,20 +24,14 @@ class Trie {
 
    hasWord(word:string) {
       let curr = this.root
-      for (const w of word) {
-         if (!(w in curr)) return false
-         curr = curr[w]
-      }
-      return curr.isWord
+      for (const w of word) curr = curr?.[w]
+      return Boolean(curr) && curr.isWord
    }
 
    hasPrefix(prefix:string) {
       let curr = this.root
-      for (const p of prefix) {
-         if (!(p in curr)) return false
-         curr = curr[p]
-      }
-      return true
+      for (const p of prefix) curr = curr?.[p]
+      return curr !== undefined
    }
 
    getPrefixes(prefix:string) {
@@ -55,12 +49,6 @@ class Trie {
       }(curr, prefix))
 
       return matches
-   }
-
-   traverse(word:string): Node | undefined {
-      let curr = this.root
-      for (const w of word) curr = curr?.[w]
-      return curr
    }
 }
 
