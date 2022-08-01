@@ -1,43 +1,41 @@
 // —————————————————————————————————————————————————————————————————————————————
 // Trie
 
-class Node {
-   isWord = false
-   constructor() {
-      Object.defineProperty(this, "isWord", {
-         enumerable: false,
-      })
-   }
+interface Node {
+   isWord: boolean
+}
+
+function newNode() {
+   const obj = Object.create(null)
+   obj.isWord = false
+   Object.defineProperty(obj, "isWord", {
+      enumerable: false,
+   })
+   return obj as Node
 }
 
 class Trie {
-   root = new Node()
+   root = newNode()
 
    insert(word:string) {
       let curr = this.root
-      for (const letter of word) {
-         curr[letter] ??= new Node()
-         curr = curr[letter]
+      for (const w of word) {
+         curr[w] ??= newNode()
+         curr = curr[w]
       }
       curr.isWord = true
    }
 
    search(word:string) {
       let curr = this.root
-      for (const letter of word) {
-         if (!(letter in curr)) return false
-         curr = curr[letter]
-      }
-      return curr.isWord
+      for (const w of word) curr = curr?.[w]
+      return Boolean(curr) && curr.isWord
    }
 
-   startsWith(word:string) {
+   startsWith(prefix:string) {
       let curr = this.root
-      for (const letter of word) {
-         if (!(letter in curr)) return false
-         curr = curr[letter]
-      }
-      return true
+      for (const p of prefix) curr = curr?.[p]
+      return curr !== undefined
    }
 }
 
