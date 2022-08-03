@@ -15,7 +15,7 @@ class TreeNode {
 type BST = TreeNode | null
 
 // —————————————————————————————————————————————————————————————————————————————
-// Solve
+// Binary Search Tree Equality
 
 function isSameTree(一:BST, 二:BST) {
    return 一 === null || 二 === null
