@@ -1,3 +1,6 @@
+// —————————————————————————————————————————————————————————————————————————————
+// Environment
+
 class TreeNode {
    val: number
    left: TreeNode | null
@@ -9,13 +12,16 @@ class TreeNode {
    }
 }
 
-function isValidBST(root: TreeNode | null): boolean {
-   function check(node: TreeNode | null, min: number, max: number): boolean {
+type BST = TreeNode | null
+
+// —————————————————————————————————————————————————————————————————————————————
+// Valid Binary Search Tree
+
+function isValidBST(root:BST): boolean {
+   function check(node:BST, min:number, max:number): boolean {
       if (node === null) return true
       if (node.val <= min || node.val >= max) return false
       return check(node.left, min, node.val) && check(node.right, node.val, max)
    }
    return check(root, -Infinity, Infinity)
 }
-
-export default {}
