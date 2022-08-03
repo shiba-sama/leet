@@ -52,12 +52,7 @@ function * subs(arr:any[]) {
 }
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-// Export
-
-export {
-   powerset,
-   subsets,
-}
+// Test
 
 console.log(
    powerset([1, 2, 3, 'meow'])
