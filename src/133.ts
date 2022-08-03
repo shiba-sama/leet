@@ -1,13 +1,4 @@
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-// Types
-
-interface Node {
-   val: number
-   neighbors: Node[]
-   constructor(val?:number, neighbors?:Node[]): Node
-}
-
-// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // Atoms
 
 class Node {
@@ -29,9 +20,8 @@ function cloneGraph(node:Node | null): Node | null {
       copy.neighbors = node.neighbors.map(clone)
       return copy
    }
-   if (!node) return null
    const seen = new Map()
-   return clone(node)
+   return node && clone(node)
 }
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -59,11 +49,4 @@ function clone(node: Node): Node | null {
    }
 
    return map.get(node.val)
-}
-
-// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-// Export
-
-export default {
-   cloneGraph,
 }
