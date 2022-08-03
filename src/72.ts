@@ -1,37 +1,35 @@
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-// Types
-
-function minDistance(w1:string, w2:string): number
-
-// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-// Core
+// Levenshtein Distance
 
 
+function minDistance(一:string, 二:string): number {
+   if (!一.length) return 二.length
+   if (!二.length) return 一.length
+   if (一.length > 二.length) [一, 二] = [二, 一]
 
-// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-// Recursive
+   const row = Array.from({ length: 一.length + 1 }, (_, i) => i)
+   let n = 0
 
-function minDistance(w1:string, w2:string) {
-   if (w1.length === 0) return w2.length
-   if (w2.length === 0) return w1.length
-   if (w1[0] === w2[0]) return minDistance(w1.slice(1), w2.slice(1))
+   for (let i=1; i<=二.length; i++) {
+      let prev = i
+      for (let j=1; j<=一.length; j++) {
+         if (二[i - 1] === 一[j - 1]) n = row[j - 1]
+         else n = Math.min(row[j - 1] + 1, Math.min(prev + 1, row[j] + 1))
+         row[j - 1] = prev
+         prev = n
+      }
+      row[一.length] = prev
+   }
 
-   return 1 + Math.min(
-      minDistance(w1.slice(1), w2),
-      minDistance(w1, w2.slice(1)),
-      minDistance(w1.slice(1), w2.slice(1))
-   )
+   return row[一.length]
 }
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-// Export
+// Test
 
-export default {
-   minDistance
-}
+const str1 = "dinitrophenylhydrazine"
+const str2 = "acetylphenylhydrazine"
 
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   # Notes
-
-   - https://en.wikipedia.org/wiki/Levenshtein_distance
- */
+console.log(
+   minDistance(str1, str2)
+)
