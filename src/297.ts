@@ -5,53 +5,43 @@ class TreeNode {
    val: number
    left: TreeNode | null
    right: TreeNode | null
-   constructor(val?: number, left?: TreeNode | null, right?: TreeNode | null) {
-      this.val = (val===undefined ? 0 : val)
-      this.left = (left===undefined ? null : left)
-      this.right = (right===undefined ? null : right)
+   constructor(val?:number, left?:Tree, right?:Tree) {
+      this.val = (val === undefined ? 0 : val)
+      this.left = (left === undefined ? null : left)
+      this.right = (right === undefined ? null : right)
    }
 }
 
 type Tree = TreeNode | null
 
-function Node(val:number, left:Tree=null, right:Tree=null): Tree {
-   let obj = Object.create(null)
-   obj.val = val
-   obj.left = left
-   obj.right = right
-   return obj
-}
-
 // —————————————————————————————————————————————————————————————————————————————
 // Serial + Deserialize a Binary Tree
 
 function serialize(tree:Tree) {
-   if (tree === null) return null
-   const 品 = [] as number[]
+   const 品 = [] as (number|string)[]
    function crawl(node:Tree) {
-      if (node === null) {
-         品.push(NaN)
-         return
-      }
+      if (node === null) return 品.push("#")
       品.push(node.val)
       crawl(node.left)
       crawl(node.right)
    }
    crawl(tree)
-   return 品
+   return JSON.stringify(品)
 }
 
-function deserialize(品:number[]) {
-   function crawl(node:TreeNode) {
-      const val = 品.shift()
-      if (Number.isNaN(val) || val === undefined) return null
-      node.val = val
-      node.left = crawl(new TreeNode())
-      node.right = crawl(new TreeNode())
-      return node
+function deserialize(str:string) {
+   const 品 = JSON.parse(str)
+   function crawl(): Tree {
+      const 口 = 品.shift()
+      return 口 === "#"
+         ? null
+         : new TreeNode(Number(口), crawl(), crawl())
    }
-   return 品 && crawl(new TreeNode())
+   return crawl()
 }
+
+// —————————————————————————————————————————————————————————————————————————————
+// Test
 
 //      0
 //     / \
@@ -60,9 +50,6 @@ function deserialize(品:number[]) {
 //  n  n 5  6
 //      /  / \
 //    nn  11  n
-
-// —————————————————————————————————————————————————————————————————————————————
-// Test
 
 let t0 = new TreeNode(
    0, 
@@ -87,9 +74,10 @@ let t1 = new TreeNode(
    )
 )
 
-let s = serialize(t0)
-let d = deserialize(s!)
-console.log(s)
+const check = (t:TreeNode) => serialize(t) === serialize(deserialize(serialize(t)))
+
+console.log(serialize(t0), check(t0))
+console.log(serialize(t1), check(t1))
 
 // —————————————————————————————————————————————————————————————————————————————
 // Alternative
