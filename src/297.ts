@@ -29,8 +29,8 @@ function serialize(tree:Tree) {
    return JSON.stringify(品)
 }
 
-function deserialize(str:string) {
-   const 品 = JSON.parse(str)
+function deserialize(json:string) {
+   const 品 = JSON.parse(json)
    function crawl(): Tree {
       const 口 = 品.shift()
       return 口 === "#"
