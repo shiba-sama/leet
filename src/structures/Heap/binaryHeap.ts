@@ -2,7 +2,7 @@
 // Binary Heap
 
 class BinaryHeap<T> {
-   品: T[] = Array(1)
+   品: T[] = [NaN as unknown as T]
    #λ: (a:T, b:T) => boolean
 
    get top(): T | undefined { return this.品[1] }
@@ -39,17 +39,16 @@ class BinaryHeap<T> {
       this.#down()
       return top
    }
+
+   *iter(): IterableIterator<T> {
+      for (let i = this.size; 0 < i; i--) yield this.out()!
+   }
 }
 
 // —————————————————————————————————————————————————————————————————————————————
 // Test
 
-const b = new BinaryHeap()
-b.in(6)
-b.in(4)
-b.in(1)
-b.in(3)
-b.in(0)
-b.in(2)
-b.in(7)
-b.in(5)
+const heap = new BinaryHeap<number>()
+let arr = [10, 6, 4, 9, 1, 3, 8, 0, 2, 7, 5, 10, 0]
+arr.forEach(n => heap.in(n))
+console.log(...heap.iter())
