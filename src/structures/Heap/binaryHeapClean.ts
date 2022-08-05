@@ -44,11 +44,16 @@ class BinaryHeap<T> {
       this.#down()
       return top
    }
+
+   *iter(): IterableIterator<T> {
+      for (let i = this.size; 0 < i; i--) yield this.out()!
+   }
 }
 
 // —————————————————————————————————————————————————————————————————————————————
 // Test
 
-const b = new BinaryHeap<number>()
-const arr = [9, 6, 4, 1, 3, 10, 0, 2, 7, 5, 8]
-arr.forEach(n => b.in(n))
+const heap = new BinaryHeap<number>()
+let arr = [10, 6, 4, 9, 1, 3, 8, 0, 2, 7, 5, 10, 0]
+arr.forEach(n => heap.in(n))
+console.log(...heap.iter())
