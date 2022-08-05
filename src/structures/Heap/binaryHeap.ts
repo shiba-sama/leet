@@ -23,10 +23,10 @@ class BinaryHeap<T> {
    #down(i = 1) {
       const L = i << 1
       const R = L + 1
-      let best = i
-      if (L <= this.size && this.#λ(this.品[L], this.品[best])) best = L
-      if (R <= this.size && this.#λ(this.品[R], this.品[best])) best = R
-      if (best !== i) this.#swap(i, best), this.#down(best)
+      let 大 = i
+      if (L <= this.size && this.#λ(this.品[L], this.品[大])) 大 = L
+      if (R <= this.size && this.#λ(this.品[R], this.品[大])) 大 = R
+      if (大 !== i) this.#swap(i, 大), this.#down(大)
    }
 
    in(口:T) { this.品.push(口), this.#up() }
