@@ -3,7 +3,7 @@
 
 class BinaryHeap<T> {
    品: T[] = []
-   #λ: (a:T, b:T) => boolean
+   #λ: (一:T, 二:T) => boolean
 
    get top(): T | undefined { return this.品[0] }
    get size() { return this.品.length }
