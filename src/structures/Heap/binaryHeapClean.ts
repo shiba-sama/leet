@@ -7,7 +7,7 @@ class BinaryHeap<T> {
 
    get top(): T | undefined { return this.品[0] }
    get size() { return this.品.length }
-   get serialize() { return this.品 }
+   get serialize() { return this.品.slice() }
 
    constructor(λ = (一:T, 二:T) => 一 < 二) { this.#λ = λ }
 
