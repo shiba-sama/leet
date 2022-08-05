@@ -2,12 +2,12 @@
 // Binary Heap
 
 class BinaryHeap<T> {
-   品: T[] = [NaN as unknown as T]
+   品: T[] = []
    #λ: (一:T, 二:T) => boolean
 
-   get top(): T | undefined { return this.品[1] }
-   get size() { return this.品.length - 1 }
-   get serialize() { return this.品.slice(1) }
+   get top(): T | undefined { return this.品[0] }
+   get size() { return this.品.length }
+   get serialize() { return this.品.slice() }
 
    constructor(λ = (一:T, 二:T) => 一 < 二) { this.#λ = λ }
 
@@ -16,12 +16,13 @@ class BinaryHeap<T> {
    }
 
    #up() {
-      let i = this.size
-      while (i > 1 && this.#λ(this.品[i], this.品[i >> 1])) this.#swap(i, i >>= 1)
+      let i = this.size - 1
+      while (i > 0 && this.#λ(this.品[i], this.品[(i - 1) >> 1]))
+         this.#swap(i, i = (i - 1) >> 1)
    }
 
-   #down(i = 1) {
-      const L = i << 1
+   #down(i = 0) {
+      const L = (i << 1) + 1
       const R = L + 1
       let 大 = i
       if (L <= this.size && this.#λ(this.品[L], this.品[大])) 大 = L
@@ -32,10 +33,9 @@ class BinaryHeap<T> {
    in(口:T) { this.品.push(口), this.#up() }
 
    out() {
-      if (this.size === 0) return undefined
-      if (this.size === 1) return this.品.pop()
+      if (this.size < 2) return this.品.pop()
       const top = this.top
-      this.品[1] = this.品.pop()!
+      this.品[0] = this.品.pop()!
       this.#down()
       return top
    }
