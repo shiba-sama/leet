@@ -31,10 +31,7 @@ class BinaryHeap<T> {
       if (best !== i) this.#swap(i, best), this.#down(best)
    }
 
-   in(口:T) {
-      this.品.push(口)
-      this.#up()
-   }
+   in(口:T) { this.品.push(口), this.#up() }
 
    out() {
       if (this.size === 0) return undefined
