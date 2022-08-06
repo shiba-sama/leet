@@ -1,7 +1,7 @@
 // —————————————————————————————————————————————————————————————————————————————
 // Utility
 
-function shuffleArray<T>(arr: T[]) {
+export function shuffleArray<T>(arr: T[]) {
    for (let i = arr.length - 1; 0 < i; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [arr[i], arr[j]] = [arr[j], arr[i]];
@@ -9,7 +9,7 @@ function shuffleArray<T>(arr: T[]) {
    return arr
 }
 
-function * naturals(max:number) { for (let i = 0; i <= max; i++) yield i }
+export function * naturals(max:number) { for (let i = 0; i <= max; i++) yield i }
 
 // —————————————————————————————————————————————————————————————————————————————
 // Data Generation
@@ -18,7 +18,7 @@ function * naturals(max:number) { for (let i = 0; i <= max; i++) yield i }
  * @example
  * randomNaturals(5, 1) // [0, 1, 1, 0, 0]
  */
-function randomNats(max:number, length=10) {
+export function randomNats(max:number, length=10) {
    return Array.from(
       { length }, 
       () => Math.floor(Math.random() * (max + 1))
@@ -30,15 +30,13 @@ function randomNats(max:number, length=10) {
  * @example
  * randomNaturals(5, -1, 1) // [-1 0, 1, 1, 0]
  */
-function randomInts(min:number, max:number, length=10) {
+export function randomInts(min:number, max:number, length=10) {
    return Array.from(
       { length }, 
       () => Math.floor(Math.random() * (max - min + 1) + min)
    )
 }
 
-function shuffledNats(max:number) {
+export function shuffledNats(max:number) {
    return shuffleArray(Array.from(naturals(max)))
 }
-
-Deno.writeFileSync("./data/nats.json", JSON.stringify(shuffledNats(100)))
