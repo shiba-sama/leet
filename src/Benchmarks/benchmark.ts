@@ -40,3 +40,5 @@ function randomInts(min:number, max:number, length=10) {
 function shuffledNats(max:number) {
    return shuffleArray(Array.from(naturals(max)))
 }
+
+Deno.writeFileSync("./data/nats.json", JSON.stringify(shuffledNats(100)))
