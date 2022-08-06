@@ -1,6 +1,9 @@
 // —————————————————————————————————————————————————————————————————————————————
 // Utility
 
+/**
+ * Fischer-Yates + Dursenfeld in-place shuffle.
+ */
 export function shuffleArray<T>(arr: T[]) {
    for (let i = arr.length - 1; 0 < i; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -9,7 +12,29 @@ export function shuffleArray<T>(arr: T[]) {
    return arr
 }
 
+/**
+ * Returns a randomly permuted copy of `arr` in which all elements are moved.
+ */
+export function sattoloCycle<T>(arr:T[]) {
+   for (let i = arr.length - 1; 0 < i; i--) {
+      const j = Math.floor(Math.random() * i);
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+   }
+   return arr
+}
+
 export function * naturals(max:number) { for (let i = 0; i <= max; i++) yield i }
+
+export function * range(一:number, 二:number, Δ:number) {
+   if (二 < 一) for (let i = 一; i >= 二; i -= Δ) yield i
+   else for (let i = 一; i <= 二; i += Δ) yield i
+}
+
+export function factorial(nat:number) {
+   let p = BigInt(1)
+   for (let i = BigInt(nat); i > 0; i--) p *= i
+   return p
+}
 
 // —————————————————————————————————————————————————————————————————————————————
 // Data Generation
@@ -21,7 +46,7 @@ export function * naturals(max:number) { for (let i = 0; i <= max; i++) yield i 
  */
 export function randomNats(max:number, length=10) {
    return Array.from(
-      { length }, 
+      { length },
       () => Math.floor(Math.random() * (max + 1))
    )
 }
@@ -33,7 +58,7 @@ export function randomNats(max:number, length=10) {
  */
 export function randomInts(min:number, max:number, length=10) {
    return Array.from(
-      { length }, 
+      { length },
       () => Math.floor(Math.random() * (max - min + 1) + min)
    )
 }
