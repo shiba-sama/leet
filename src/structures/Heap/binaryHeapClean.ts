@@ -1,7 +1,7 @@
 // —————————————————————————————————————————————————————————————————————————————
 // Binary Heap
 
-class BinaryHeap<T> {
+export default class BinaryHeap<T> {
    品: T[] = []
    #λ: (一:T, 二:T) => boolean
 
