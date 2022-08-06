@@ -15,6 +15,7 @@ export function * naturals(max:number) { for (let i = 0; i <= max; i++) yield i 
 // Data Generation
 
 /**
+ * Generate random naturals up to `max` of cardinality `length`.
  * @example
  * randomNaturals(5, 1) // [0, 1, 1, 0, 0]
  */
@@ -26,9 +27,9 @@ export function randomNats(max:number, length=10) {
 }
 
 /**
- * Generates integers inclusively from `min` to `max`.
+ * Generate random integers from `min` to `max` of cardinality `length`.
  * @example
- * randomNaturals(5, -1, 1) // [-1 0, 1, 1, 0]
+ * randomNaturals(5, -1, 1) // [-1, 0, 1, 1, 0]
  */
 export function randomInts(min:number, max:number, length=10) {
    return Array.from(
@@ -37,6 +38,12 @@ export function randomInts(min:number, max:number, length=10) {
    )
 }
 
+/**
+ * Generate shuffled naturals `0` to `max`.
+ * @example
+ * shuffledNaturals(5) // [0, 5, 1, 3, 2]
+ * shuffledNaturals(5) // [1, 5, 0, 3, 2]
+ */
 export function shuffledNats(max:number) {
    return shuffleArray(Array.from(naturals(max)))
 }
