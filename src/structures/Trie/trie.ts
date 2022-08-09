@@ -1,10 +1,6 @@
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // Types
 
-export default {
-
-}
-
 type Trie = {
    kids: { [key: string]: Node }
    words: number
@@ -23,8 +19,8 @@ function dict<T extends Object>(obj?: T): T {
    return Object.assign(Object.create(null), obj)
 }
 
-const isLetter = (letter) => Boolean(letter?.match(/^[a-z]$/i))
-const isWord = (word) => Boolean(word?.match(/^[a-z]+$/i))
+const isLetter = (letter:string) => Boolean(letter?.match(/^[a-z]$/i))
+const isWord = (word:string) => Boolean(word?.match(/^[a-z]+$/i))
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // Atoms
@@ -39,7 +35,6 @@ function node({ value="", kids=dict(), isWord=false }): Node {
 
 // creates a sub-trie to stitch onto another node
 function branch(word:string): Node {
-   if (!isWord(word)) throw Error(`branch: invalid word: ${word}`)
    return word.length === 1
       ? node({ value: word, isWord: true })
       : node({

@@ -21,7 +21,7 @@ class Node {
    }
 
    has(口:number): boolean {
-      return 口 === this.口 
+      return 口 === this.口
          || !!this[口 < this.口 ? '小' : '大']?.has(口)
    }
 }
