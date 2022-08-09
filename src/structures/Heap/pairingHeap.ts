@@ -10,7 +10,7 @@ class Node<T> {
 // —————————————————————————————————————————————————————————————————————————————
 // Pairing Heap
 
-class PairingHeap<T> {
+export default class PairingHeap<T> {
    root?: Node<T>
    size: number = 0
    #λ: (a:T, b:T) => boolean
@@ -49,17 +49,21 @@ class PairingHeap<T> {
       this.size--
       return top
    }
+
+   *iter(): IterableIterator<T> {
+      for (let i = this.size; 0 < i; i--) yield this.out()!
+   }
 }
 
 // —————————————————————————————————————————————————————————————————————————————
 // Test
 
-let h = new PairingHeap<number>()
-h.in(4)
-h.in(1)
-h.in(3)
-h.in(6)
-h.in(0)
-h.in(2)
-h.in(5)
-h.in(7)
+// let h = new PairingHeap<number>()
+// h.in(4)
+// h.in(1)
+// h.in(3)
+// h.in(6)
+// h.in(0)
+// h.in(2)
+// h.in(5)
+// h.in(7)
