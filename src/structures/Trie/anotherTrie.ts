@@ -8,10 +8,7 @@ interface Node {
 function Node(): Node {
    const obj = Object.create(null)
    obj.isWord = false
-   Object.defineProperty(obj, "isWord", {
-      enumerable: false,
-   })
-   return obj
+   return Object.defineProperty(obj, "isWord", { enumerable: false, })
 }
 
 // —————————————————————————————————————————————————————————————————————————————
@@ -46,7 +43,6 @@ export default class Trie {
 
       let curr = this.root
       for (const p of prefix) curr = curr?.[p]
-      if (curr === undefined) return matches
 
       ;+function traverse(node:Node, path:string) {
          if (node.isWord) matches.push(path)
