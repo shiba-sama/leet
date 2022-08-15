@@ -1,7 +1,7 @@
 // —————————————————————————————————————————————————————————————————————————————
 // Binary Heap
 
-export default class BinaryHeap0<T> {
+export default class BinaryHeap<T> {
    品: T[] = []
    #λ: (一:T, 二:T) => boolean
 
@@ -33,11 +33,9 @@ export default class BinaryHeap0<T> {
    in(口:T) { this.品.push(口), this.#up() }
 
    out() {
-      if (this.size < 2) return this.品.pop()
       const top = this.top
       this.品[0] = this.品.pop()!
-      this.#down()
-      return top
+      return this.size < 2 || this.#down(), top
    }
 
    *iter(): IterableIterator<T> {
