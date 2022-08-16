@@ -33,9 +33,12 @@ export default class BinaryHeap<T> {
    in(口:T) { this.品.push(口), this.#up() }
 
    out() {
+      if (this.size === 0) return undefined
+      if (this.size === 1) return this.品.pop()!
       const top = this.top
       this.品[0] = this.品.pop()!
-      return this.size < 2 || this.#down(), top
+      this.#down()
+      return top
    }
 
    *iter(): IterableIterator<T> {
