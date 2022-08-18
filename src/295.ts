@@ -1,8 +1,8 @@
 // —————————————————————————————————————————————————————————————————————————————
 // Binary Heap
 
-export default class BinaryHeap<T> {
-   品: T[] = [0 as unknown as T]
+class BinaryHeap<T> {
+   品: T[] = [NaN as unknown as T]
    #λ: (一:T, 二:T) => boolean
 
    get top(): T | undefined { return this.品[1] }
@@ -33,20 +33,44 @@ export default class BinaryHeap<T> {
 
    out() {
       if (this.size === 0) return undefined
-      if (this.size === 1) return this.品.pop()!
+      if (this.size === 1) return this.品.pop()
       const top = this.top
       this.品[1] = this.品.pop()!
       this.#down()
       return top
    }
 
-   *iter() { for (let i = this.size; 0 < i; i--) yield this.out()! }
+   *iter(): IterableIterator<T> {
+      for (let i = this.size; 0 < i; i--) yield this.out()!
+   }
+}
+
+// —————————————————————————————————————————————————————————————————————————————
+// Median Stream
+
+class MedianStream {
+   小 = new BinaryHeap<number>();
+   大 = new BinaryHeap<number>((一, 二) => 一 > 二);
+
+   in(口:number) {
+      this.小.in(口)
+      this.大.in(-this.小.out()!)
+      if (this.小.size < this.大.size) this.小.in(-this.大.out()!)
+         this.小.in(-this.大.out()!)
+   }
+
+   get median() {
+      return this.小.size > this.大.size
+         ? this.小.top
+         : (this.小.top! - this.大.top!) / 2
+   }
 }
 
 // —————————————————————————————————————————————————————————————————————————————
 // Test
 
-// const heap = new BinaryHeap<number>()
-// let arr = [10, 6, 4, 9, 1, 3, 8, 0, 2, 7, 5, 10, 0]
-// arr.forEach(n => heap.in(n))
-// const nums = Array.from(heap.iter())
+function * naturals(max:number) { for (let i = 0; i <= max; i++) yield i }
+let from_0_to_100 = Array.from(naturals(100))
+
+let b = new BinaryHeap<number>((一, 二) => 一 > 二)
+from_0_to_100.forEach(b.in.bind(b))
