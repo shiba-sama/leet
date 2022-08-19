@@ -17,7 +17,7 @@ export default class BinaryHeap<T> {
 
    #up() {
       let i = this.size
-      while (i > 1 && this.#λ(this.品[i], this.品[i >> 1])) this.#swap(i, i >>= 1)
+      while (1 < i && this.#λ(this.品[i], this.品[i >> 1])) this.#swap(i, i >>= 1)
    }
 
    #down(i = 1) {
