@@ -3,16 +3,14 @@
 
    - `1 << j` corresponds to a unit vector for the bitwise space.
    - `i` represents all possible values from `0` to `2 ** arr.length`.
-   - while walking through all choices of `i` we use the unit vector `1 << j` to 
+   - while walking through all choices of `i` we use the unit vector `1 << j` to
      check whether a bit in `i` is on or off during a specific combination.
  */
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // Powerset
 
-/**
- * Return the powerset of `arr`. Cannot handle lengths greater than 23.
- */
+/** Return the powerset of `arr`. Cannot handle lengths greater than 23. */
 function powerset(arr:any[]) {
    return Array.from(
       { length: 1 << arr.length },
@@ -20,9 +18,7 @@ function powerset(arr:any[]) {
    )
 }
 
-/**
- * Iteratively yields all subsets of `arr`.
- */
+/** Iteratively yields all subsets of `arr`. */
 function * subsets(arr:any[]) {
    const max = 1 << arr.length
    for (let i = 0; i < max; i++)
