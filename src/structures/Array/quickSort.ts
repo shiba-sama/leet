@@ -8,3 +8,7 @@ function qs(nums:number[]): number[] {
    const 大 = 品.filter(口 => 中 < 口)
    return qs(小).concat(中).concat(qs(大))
 }
+
+const data = [3, 2, 1, 4, 5]
+
+console.log(qs(data))
