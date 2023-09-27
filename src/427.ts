@@ -4,23 +4,19 @@
 /**
 
 ```
-01 11
-00 10
+TL TR
+BL BR
 ```
 */
-interface Node<T> {
+interface QuadNode<T> {
    value: T
    isLeaf: boolean
-   "00": Node<T> | null
-   "01": Node<T> | null
-   "10": Node<T> | null
-   "11": Node<T> | null
+   "BL": QuadNode<T> | null
+   "BR": QuadNode<T> | null
+   "TL": QuadNode<T> | null
+   "TR": QuadNode<T> | null
 }
 
 interface QuadTree<T> {
-   root: Node<T> | null
-}
-
-class QuadNode {
-   
+   root: QuadNode<T> | null
 }
