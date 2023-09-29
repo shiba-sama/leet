@@ -10,4 +10,4 @@ const len = (p:point) => p[0]**2 + p[1]**2
 
 const kClosest = (points:point[], k:number): point[] => points
    .sort((a, b) => len(a) - len(b))
-   .slice(0, k)
+   .splice(0, k)
