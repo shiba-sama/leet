@@ -11,7 +11,7 @@
 // Powerset
 
 /** Return the powerset of `arr`. Cannot handle lengths greater than 23. */
-function powerset(arr:any[]) {
+function powerset<T>(arr:T[]) {
    return Array.from(
       { length: 1 << arr.length },
       (_, i) => arr.filter((_, j) => 1 << j & i)
@@ -19,7 +19,7 @@ function powerset(arr:any[]) {
 }
 
 /** Iteratively yields all subsets of `arr`. */
-function * subsets(arr:any[]) {
+function * subsets<T>(arr:T[]) {
    const max = 1 << arr.length
    for (let i = 0; i < max; i++)
       yield arr.filter((_, j) => 1 << j & i)
@@ -28,18 +28,18 @@ function * subsets(arr:any[]) {
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // Extra
 
-function λpowerset(arr:any[]): any[][] {
-   function loop(i:number, set:any[]) {
+function λpowerset<T>(arr:T[]): T[][] {
+   function loop(i:number, set:T[]) {
       if (i === arr.length) return acc.push(set)
       loop(i + 1, set)
       loop(i + 1, set.concat(arr[i]))
    }
-   const acc: any[][] = []
+   const acc: T[][] = []
    loop(0, [])
    return acc
 }
 
-function * subs(arr:any[]) {
+function * subs<T>(arr:T[]) {
    const max = 2 ** arr.length
    for (let i = 0; i < max; i++) {
       const keys = i.toString(2).padStart(arr.length, '0')
