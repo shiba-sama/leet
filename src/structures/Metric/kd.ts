@@ -16,7 +16,8 @@ interface Node {
 // —————————————————————————————————————————————————————————————————————————————
 // Utility
 
-const distance = (a: Point, b: Point) => (a.x - b.x) ** 2 + (a.y - b.y) ** 2
+/** Squared Euclidian Distance */
+const distance = (a: Point, b: Point) => (a.x - b.x)**2 + (a.y - b.y)**2
 
 // —————————————————————————————————————————————————————————————————————————————
 // K-D Tree where K=2
