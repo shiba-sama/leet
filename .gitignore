@@ -1,16 +1,11 @@
 .idea/
 .env
 .DS_Store
+
+# Cargo
 build/
+target/
+Cargo.lock/
 
-# Added by cargo
-
-/target
-
-
-# Added by cargo
-#
-# already existing elements were commented out
-
-#/target
-/Cargo.lock
+# Node
+node_modules/
