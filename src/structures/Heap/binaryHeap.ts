@@ -1,11 +1,11 @@
 // —————————————————————————————————————————————————————————————————————————————
 // Binary Heap
 
-export default class BinaryHeap<T = number> {
+export default class BinaryHeap<T> {
   品: T[] = []
   #λ: (一: T, 二: T) => boolean
 
-  get top(): T | undefined { return this.品[1] }
+  get top(): T { return this.品[1] }
   get size() { return this.品.length - 1 }
   get serialize() { return this.品.slice(1) }
 
