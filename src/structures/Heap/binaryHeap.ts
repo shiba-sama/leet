@@ -10,11 +10,11 @@ export default class BinaryHeap<T = number> {
   get serialize() { return this.品.slice(1) }
 
   /**
-   - `λ` is a comparator function with the default choice being a min heap.
+   - `comparator` is an ordering function
    - `filler` is a default value for the array for optimization purposes
   */
-  constructor(λ = (一: T, 二: T) => 一 < 二, filler?: T) {
-    this.#λ = λ
+  constructor(comparator = (一: T, 二: T) => 一 < 二, filler?: T) {
+    this.#λ = comparator
     this.品.push(filler ?? (0 as unknown as T))
   }
 
@@ -43,10 +43,8 @@ export default class BinaryHeap<T = number> {
 
   out() {
     switch (this.size) {
-      case 0:
-        return undefined
-      case 1:
-        return this.品.pop()!
+      case 0: return undefined
+      case 1: return this.品.pop()!
       default:
         const top = this.top
         this.品[1] = this.品.pop()!
