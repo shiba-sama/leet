@@ -17,15 +17,11 @@ function hash(word:string) {
 function zeroMatrix(rows:number, cols:number) {
    return Array.from(
       { length: rows }, 
-      () => Array.from(
-         { length: cols }, 
-         () => 0
-      )
+      () => Array.from({ length: cols }, () => 0)
    )
 }
 
-export function randomInts(n:number, bits:8|16|32): Uint8Array | Uint16Array | Uint32Array
-export function randomInts(n, bits=32) {
+export function randomInts(n:number, bits:8|16|32=32) {
    switch(bits) {
       case 8: return window.crypto.getRandomValues(new Uint8Array(n))
       case 16: return window.crypto.getRandomValues(new Uint16Array(n))

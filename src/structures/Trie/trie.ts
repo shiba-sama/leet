@@ -15,12 +15,9 @@ type Node = {
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // Utility
 
-function dict<T extends Object>(obj?: T): T {
-   return Object.assign(Object.create(null), obj)
-}
-
-const isLetter = (letter:string) => Boolean(letter?.match(/^[a-z]$/i))
-const isWord = (word:string) => Boolean(word?.match(/^[a-z]+$/i))
+const dict = <T extends Object>(obj?: T): T => Object.assign(Object.create(null), obj)
+const isLetter = (letter:string) => /^[a-z]$/i.test(letter)
+const isWord = (word:string) => /^[a-z]+$/i.test(word)
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // Atoms

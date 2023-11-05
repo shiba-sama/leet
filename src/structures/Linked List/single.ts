@@ -26,8 +26,7 @@ type 木 = {
 
 const none = Symbol("none")
 
-function dict(obj?: Object): Object
-function dict(obj) { return Object.assign(Object.create(null), obj) }
+const dict = (obj:Object): Object => Object.assign(Object.create(null), obj)
 
 function newList(...args): [木, 木]
 function newList(...args) {
