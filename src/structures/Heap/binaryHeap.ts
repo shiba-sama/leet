@@ -5,28 +5,26 @@ export default class BinaryHeap<T = number> {
   品: T[] = []
   #λ: (一: T, 二: T) => boolean
 
-  get top(): T | undefined {
-    return this.品[1]
-  }
-  get size() {
-    return this.品.length - 1
-  }
-  get serialize() {
-    return this.品.slice(1)
-  }
+  get top(): T | undefined { return this.品[1] }
+  get size() { return this.品.length - 1 }
+  get serialize() { return this.品.slice(1) }
 
+  /**
+   - `λ` is a comparator function with the default choice being a min heap.
+   - `filler` is a default value for the array for optimization purposes
+  */
   constructor(λ = (一: T, 二: T) => 一 < 二, filler?: T) {
     this.#λ = λ
     this.品.push(filler ?? (0 as unknown as T))
   }
 
   #swap(一: number, 二: number) {
-    ;[this.品[一], this.品[二]] = [this.品[二], this.品[一]]
+    [this.品[一], this.品[二]] = [this.品[二], this.品[一]]
   }
 
   #up() {
     let i = this.size
-    while (1 < i && this.#λ(this.品[i], this.品[i >> 1])) 
+    while (1 < i && this.#λ(this.品[i], this.品[i >> 1]))
       this.#swap(i, (i >>= 1))
   }
 
