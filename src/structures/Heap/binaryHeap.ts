@@ -1,7 +1,7 @@
 // —————————————————————————————————————————————————————————————————————————————
 // Binary Heap
 
-export default class BinaryHeap<T> {
+export default class BinaryHeap<T extends {}> {
   品: T[] = []
   #λ: (一: T, 二: T) => boolean
 
@@ -63,5 +63,5 @@ export default class BinaryHeap<T> {
 
 const heap = new BinaryHeap<number>()
 let arr = [10, 6, 4, 9, 1, 3, 8, 0, 2, 7, 5, 10, 0]
-arr.forEach((n) => heap.in(n))
+arr.forEach(n => heap.in(n))
 const nums = Array.from(heap.iter())
