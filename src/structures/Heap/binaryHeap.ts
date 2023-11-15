@@ -1,11 +1,11 @@
 // —————————————————————————————————————————————————————————————————————————————
 // Binary Heap
 
-export default class BinaryHeap<T> {
+export default class BinaryHeap<T extends {}> {
   品: T[] = []
   #λ: (一: T, 二: T) => boolean
 
-  get top(): T { return this.品[1] }
+  get top(): T | undefined { return this.品[1] }
   get size() { return this.品.length - 1 }
   get serialize() { return this.品.slice(1) }
 
@@ -46,7 +46,7 @@ export default class BinaryHeap<T> {
       case 0: return undefined
       case 1: return this.品.pop()!
       default:
-        const top = this.top
+        const top = this.top!
         this.品[1] = this.品.pop()!
         this.#down()
         return top
@@ -63,5 +63,5 @@ export default class BinaryHeap<T> {
 
 const heap = new BinaryHeap<number>()
 let arr = [10, 6, 4, 9, 1, 3, 8, 0, 2, 7, 5, 10, 0]
-arr.forEach((n) => heap.in(n))
+arr.forEach(n => heap.in(n))
 const nums = Array.from(heap.iter())
